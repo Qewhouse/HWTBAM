@@ -8,7 +8,7 @@
 import UIKit
 import SwiftUI
 
-struct ViewControllerPreview: UIViewControllerRepresentable {
+struct SuccessTablePreview: UIViewControllerRepresentable {
     let viewControllerGenerator: () -> UIViewController
 
     init(viewControllerGenerator: @escaping () -> UIViewController) {
@@ -48,7 +48,7 @@ class SuccessTableView: UIViewController {
 
 }
 
-struct ViewControllerProvider: PreviewProvider {
+struct SuccessTableProvider: PreviewProvider {
     static var previews: some View {
         ViewControllerPreview {
             SuccessTableView()
