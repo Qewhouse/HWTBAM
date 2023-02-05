@@ -7,5 +7,5 @@
 В проекте участвовали:
 - https://github.com/Qewhouse
 - https://github.com/AleksandrRudenok
-- https://github.com/
+- https://github.com/Sosisya
 - https://github.com/
