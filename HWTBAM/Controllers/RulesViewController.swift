@@ -1,10 +1,3 @@
-//
-//  RulesViewController.swift
-//  HWTBAM
-//
-//  Created by Луиза Самойленко on 05.02.2023.
-//
-
 import UIKit
 
 class RulesViewController: UIViewController {
@@ -27,6 +20,7 @@ class RulesViewController: UIViewController {
         return label
 
     }()
+
     private let rulesTextLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
@@ -84,20 +78,25 @@ class RulesViewController: UIViewController {
         button.setTitle("Назад", for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 28)
         button.layer.cornerRadius = 14
+        button.addTarget(self, action: #selector(clickReturn), for: .touchUpInside)
         return button
     }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setLayout()
+        setConstraint()
+    }
+
+    func setLayout() {
+        view.addSubview(backgroundImageView)
         view.addSubview(scrollView)
-        scrollView.addSubview(backgroundImageView)
         scrollView.addSubview(rulesHeadLabel)
         scrollView.addSubview(rulesTextLabel)
         scrollView.addSubview(returnButton)
-        setConstrains()
     }
 
-    func setConstrains() {
+    func setConstraint() {
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         backgroundImageView.translatesAutoresizingMaskIntoConstraints = false
         rulesHeadLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -105,7 +104,7 @@ class RulesViewController: UIViewController {
         returnButton.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
-            scrollView.topAnchor.constraint(equalTo: view.topAnchor),
+            scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
@@ -132,5 +131,7 @@ class RulesViewController: UIViewController {
         ])
     }
 
-    //Cделать кнопку возырата и причесать Spec
+    @objc func clickReturn() {
+        print("return")
+    }
 }
