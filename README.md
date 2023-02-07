@@ -6,10 +6,8 @@
 
 В проекте участвовали:
 - https://github.com/Qewhouse
-- https://github.com/AleksandrRudenok
 - https://github.com/Sosisya
 - https://github.com/andrvet92
 - https://github.com/FazilJabbarov
-
 
 Челлендж 01 группы от https://t.me/swiftmarathon
