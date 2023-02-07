@@ -13,6 +13,14 @@
 		37DFF9AB298F1858005BA055 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DFF9AA298F1858005BA055 /* StartViewController.swift */; };
 		37DFF9B0298F1859005BA055 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37DFF9AF298F1859005BA055 /* Assets.xcassets */; };
 		37DFF9B3298F1859005BA055 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 37DFF9B1298F1859005BA055 /* LaunchScreen.storyboard */; };
+		8E0C07CD29924FEB0023F20F /* rightAnswer.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8E0C07C829924FEA0023F20F /* rightAnswer.mp3 */; };
+		8E0C07CE29924FEB0023F20F /* timing.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8E0C07C929924FEB0023F20F /* timing.mp3 */; };
+		8E0C07CF29924FEB0023F20F /* acceptedAnswer.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8E0C07CA29924FEB0023F20F /* acceptedAnswer.mp3 */; };
+		8E0C07D029924FEB0023F20F /* win.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8E0C07CB29924FEB0023F20F /* win.mp3 */; };
+		8E0C07D129924FEB0023F20F /* wrongAnswer.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8E0C07CC29924FEB0023F20F /* wrongAnswer.mp3 */; };
+		8E0C07D7299291DF0023F20F /* WiningViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E0C07D6299291DF0023F20F /* WiningViewController.swift */; };
+		8E0C07D929929C8A0023F20F /* Prize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E0C07D829929C8A0023F20F /* Prize.swift */; };
+		8E0C07DB2992A2570023F20F /* WiningTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E0C07DA2992A2570023F20F /* WiningTableViewCell.swift */; };
 		8E22FDA9298FE8BE0012A0D1 /* RulesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E22FDA8298FE8BE0012A0D1 /* RulesViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -25,6 +33,14 @@
 		37DFF9AF298F1859005BA055 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		37DFF9B2298F1859005BA055 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		37DFF9B4298F1859005BA055 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8E0C07C829924FEA0023F20F /* rightAnswer.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = rightAnswer.mp3; sourceTree = "<group>"; };
+		8E0C07C929924FEB0023F20F /* timing.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = timing.mp3; sourceTree = "<group>"; };
+		8E0C07CA29924FEB0023F20F /* acceptedAnswer.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = acceptedAnswer.mp3; sourceTree = "<group>"; };
+		8E0C07CB29924FEB0023F20F /* win.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = win.mp3; sourceTree = "<group>"; };
+		8E0C07CC29924FEB0023F20F /* wrongAnswer.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = wrongAnswer.mp3; sourceTree = "<group>"; };
+		8E0C07D6299291DF0023F20F /* WiningViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WiningViewController.swift; sourceTree = "<group>"; };
+		8E0C07D829929C8A0023F20F /* Prize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prize.swift; sourceTree = "<group>"; };
+		8E0C07DA2992A2570023F20F /* WiningTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WiningTableViewCell.swift; sourceTree = "<group>"; };
 		8E22FDA8298FE8BE0012A0D1 /* RulesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RulesViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -82,6 +98,11 @@
 				37DFF9AF298F1859005BA055 /* Assets.xcassets */,
 				37DFF9B1298F1859005BA055 /* LaunchScreen.storyboard */,
 				37DFF9B4298F1859005BA055 /* Info.plist */,
+				8E0C07C929924FEB0023F20F /* timing.mp3 */,
+				8E0C07CA29924FEB0023F20F /* acceptedAnswer.mp3 */,
+				8E0C07C829924FEA0023F20F /* rightAnswer.mp3 */,
+				8E0C07CC29924FEB0023F20F /* wrongAnswer.mp3 */,
+				8E0C07CB29924FEB0023F20F /* win.mp3 */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -97,6 +118,7 @@
 			isa = PBXGroup;
 			children = (
 				3784E83A299195E8004F8235 /* Rules.swift */,
+				8E0C07D829929C8A0023F20F /* Prize.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -105,8 +127,9 @@
 			isa = PBXGroup;
 			children = (
 				37DFF9AA298F1858005BA055 /* StartViewController.swift */,
-				37DFF9AA298F1858005BA055 /* ViewController.swift */,
 				8E22FDA8298FE8BE0012A0D1 /* RulesViewController.swift */,
+				8E0C07D6299291DF0023F20F /* WiningViewController.swift */,
+				8E0C07DA2992A2570023F20F /* WiningTableViewCell.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -169,8 +192,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8E0C07CE29924FEB0023F20F /* timing.mp3 in Resources */,
+				8E0C07D129924FEB0023F20F /* wrongAnswer.mp3 in Resources */,
 				37DFF9B3298F1859005BA055 /* LaunchScreen.storyboard in Resources */,
 				37DFF9B0298F1859005BA055 /* Assets.xcassets in Resources */,
+				8E0C07D029924FEB0023F20F /* win.mp3 in Resources */,
+				8E0C07CD29924FEB0023F20F /* rightAnswer.mp3 in Resources */,
+				8E0C07CF29924FEB0023F20F /* acceptedAnswer.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -184,8 +212,11 @@
 				37DFF9AB298F1858005BA055 /* StartViewController.swift in Sources */,
 				37DFF9A7298F1858005BA055 /* AppDelegate.swift in Sources */,
 				8E22FDA9298FE8BE0012A0D1 /* RulesViewController.swift in Sources */,
+				8E0C07DB2992A2570023F20F /* WiningTableViewCell.swift in Sources */,
+				8E0C07D929929C8A0023F20F /* Prize.swift in Sources */,
 				37DFF9A9298F1858005BA055 /* SceneDelegate.swift in Sources */,
 				3784E83B299195E8004F8235 /* Rules.swift in Sources */,
+				8E0C07D7299291DF0023F20F /* WiningViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
