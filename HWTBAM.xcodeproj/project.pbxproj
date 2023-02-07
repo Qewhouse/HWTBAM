@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		3784E83B299195E8004F8235 /* Rules.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3784E83A299195E8004F8235 /* Rules.swift */; };
+		3784E83D2992EFCD004F8235 /* WinModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3784E83C2992EFCD004F8235 /* WinModel.swift */; };
+		3784E83F2992FAE4004F8235 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3784E83E2992FAE4004F8235 /* Theme.swift */; };
+		3784E8412992FEEE004F8235 /* PlayerAnswer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3784E8402992FEEE004F8235 /* PlayerAnswer.swift */; };
+		3784E8432992FF53004F8235 /* AnswerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3784E8422992FF53004F8235 /* AnswerModel.swift */; };
 		37DFF9A7298F1858005BA055 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DFF9A6298F1858005BA055 /* AppDelegate.swift */; };
 		37DFF9A9298F1858005BA055 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DFF9A8298F1858005BA055 /* SceneDelegate.swift */; };
 		37DFF9AB298F1858005BA055 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DFF9AA298F1858005BA055 /* StartViewController.swift */; };
@@ -26,6 +30,10 @@
 
 /* Begin PBXFileReference section */
 		3784E83A299195E8004F8235 /* Rules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rules.swift; sourceTree = "<group>"; };
+		3784E83C2992EFCD004F8235 /* WinModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WinModel.swift; sourceTree = "<group>"; };
+		3784E83E2992FAE4004F8235 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		3784E8402992FEEE004F8235 /* PlayerAnswer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerAnswer.swift; sourceTree = "<group>"; };
+		3784E8422992FF53004F8235 /* AnswerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerModel.swift; sourceTree = "<group>"; };
 		37DFF9A3298F1858005BA055 /* HWTBAM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HWTBAM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		37DFF9A6298F1858005BA055 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		37DFF9A8298F1858005BA055 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -96,6 +104,7 @@
 			isa = PBXGroup;
 			children = (
 				37DFF9AF298F1859005BA055 /* Assets.xcassets */,
+				3784E83E2992FAE4004F8235 /* Theme.swift */,
 				37DFF9B1298F1859005BA055 /* LaunchScreen.storyboard */,
 				37DFF9B4298F1859005BA055 /* Info.plist */,
 				8E0C07C929924FEB0023F20F /* timing.mp3 */,
@@ -110,6 +119,9 @@
 		37DFF9BC298F1960005BA055 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				3784E83C2992EFCD004F8235 /* WinModel.swift */,
+				3784E8402992FEEE004F8235 /* PlayerAnswer.swift */,
+				3784E8422992FF53004F8235 /* AnswerModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -117,6 +129,7 @@
 		37DFF9BD298F1968005BA055 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				8E0C07DA2992A2570023F20F /* WiningTableViewCell.swift */,
 				3784E83A299195E8004F8235 /* Rules.swift */,
 				8E0C07D829929C8A0023F20F /* Prize.swift */,
 			);
@@ -129,7 +142,6 @@
 				37DFF9AA298F1858005BA055 /* StartViewController.swift */,
 				8E22FDA8298FE8BE0012A0D1 /* RulesViewController.swift */,
 				8E0C07D6299291DF0023F20F /* WiningViewController.swift */,
-				8E0C07DA2992A2570023F20F /* WiningTableViewCell.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -209,6 +221,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3784E8412992FEEE004F8235 /* PlayerAnswer.swift in Sources */,
 				37DFF9AB298F1858005BA055 /* StartViewController.swift in Sources */,
 				37DFF9A7298F1858005BA055 /* AppDelegate.swift in Sources */,
 				8E22FDA9298FE8BE0012A0D1 /* RulesViewController.swift in Sources */,
@@ -216,6 +229,9 @@
 				8E0C07D929929C8A0023F20F /* Prize.swift in Sources */,
 				37DFF9A9298F1858005BA055 /* SceneDelegate.swift in Sources */,
 				3784E83B299195E8004F8235 /* Rules.swift in Sources */,
+				3784E83F2992FAE4004F8235 /* Theme.swift in Sources */,
+				3784E8432992FF53004F8235 /* AnswerModel.swift in Sources */,
+				3784E83D2992EFCD004F8235 /* WinModel.swift in Sources */,
 				8E0C07D7299291DF0023F20F /* WiningViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

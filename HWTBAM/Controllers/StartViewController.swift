@@ -97,7 +97,9 @@ to be a Millionare ?
     }
     
     @objc func startButtonTapped() {
-        print("hello")
+        let winVC = WiningViewController()
+        winVC.modalPresentationStyle = .fullScreen
+        present(winVC, animated: true)
     }
     
     @objc func rulesButtonTapped() {

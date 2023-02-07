@@ -1,7 +1,10 @@
 import UIKit
 
-class WiningViewController: UIViewController {
+final class WiningViewController: UIViewController {
 
+    private let playerAnswer: PlayerAnswer? = nil
+    private var answerModel: AnswerModel?
+    
     private let backgroundImageView: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
@@ -10,7 +13,7 @@ class WiningViewController: UIViewController {
     }()
 
     private let headerImage: UIImageView = {
-        let image = UIImageView()
+        let image = UIImageView(frame: .zero)
         image.translatesAutoresizingMaskIntoConstraints = false
         image.image = UIImage(named: "image 1")
         return image
@@ -18,17 +21,18 @@ class WiningViewController: UIViewController {
 
     private let moneyList: UITableView = {
         let tableView = UITableView()
+        tableView.register(WiningTableViewCell.self, forCellReuseIdentifier: WiningTableViewCell.id)
         tableView.backgroundColor = .none
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
-
+ 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupLayout()
         setupConstraint()
     }
-
+    
     func setupLayout() {
         view.addSubview(backgroundImageView)
         view.addSubview(headerImage)
@@ -40,14 +44,22 @@ class WiningViewController: UIViewController {
 
 extension WiningViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 15
+        return WinModel.winModels.count
     }
-
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        45
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = WiningTableViewCell()
-        return cell
+        let cell = tableView.dequeueReusableCell(withIdentifier: WiningTableViewCell.id, for: indexPath) as? WiningTableViewCell
+        let currentQuestion = answerModel?.question == indexPath.row && playerAnswer?.result != nil
+        cell?.configure(model: WinModel.winModels[indexPath.row], currentQuestion: currentQuestion)
+        return cell ?? UITableViewCell()
     }
+}
 
+extension WiningViewController {
     func setupConstraint() {
         NSLayoutConstraint.activate([
 
@@ -69,28 +81,3 @@ extension WiningViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-import SwiftUI
-struct ListProvider: PreviewProvider {
-    static var previews: some View {
-        ContainterView().edgesIgnoringSafeArea(.all)
-            .previewDevice("iPhone 12 Pro Max")
-            .previewDisplayName("iPhone 12 Pro Max")
-
-        ContainterView().edgesIgnoringSafeArea(.all)
-            .previewDevice("iPhone SE (3rd generation)")
-            .previewDisplayName("iPhone SE (3rd generation)")
-    }
-
-    struct ContainterView: UIViewControllerRepresentable {
-        let listVC = WiningViewController()
-        func makeUIViewController(context:
-                                  UIViewControllerRepresentableContext<ListProvider.ContainterView>) -> WiningViewController {
-            return listVC
-        }
-
-        func updateUIViewController(_ uiViewController:
-                                    ListProvider.ContainterView.UIViewControllerType, context:
-                                    UIViewControllerRepresentableContext<ListProvider.ContainterView>) {
-        }
-    }
-}
