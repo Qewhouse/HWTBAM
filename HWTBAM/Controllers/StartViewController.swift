@@ -101,21 +101,19 @@ to be a Millionare ?
     }
     
     @objc func rulesButtonTapped() {
-        print("bye")
+        let rulesVC = RulesViewController()
+        rulesVC.modalPresentationStyle = .fullScreen
+        present(rulesVC, animated: true)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        setLayot()
+        setLayout()
         setConstraints()
-        
         buttonTapped()
-        
-        
     }
     
-    private func setLayot() {
+    private func setLayout() {
         view.addSubview(backgroundImage)
         view.addSubview(logoImage)
         view.addSubview(labelStackView)
@@ -160,42 +158,3 @@ to be a Millionare ?
     }
 
 }
-
-
-import SwiftUI
-
-struct ViewControllerPreview: UIViewControllerRepresentable {
-    let viewControllerGenerator: () -> UIViewController
-    
-    init(viewControllerGenerator: @escaping () -> UIViewController) {
-        self.viewControllerGenerator = viewControllerGenerator
-    }
-    
-    func makeUIViewController(context: Context) -> some UIViewController {
-        viewControllerGenerator()
-    }
-    
-    func updateUIViewController(_ UIViewController: UIViewControllerType, context: Context) {
-        
-    }
-}
-
-class SuccessTableView: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        view.backgroundColor = .red
-        
-    }
-
-
-}
-
-struct ViewControllerProvider: PreviewProvider {
-    static var previews: some View {
-        ViewControllerPreview {
-            SuccessTableView()
-        }.edgesIgnoringSafeArea(.all)
-    }
-}
-

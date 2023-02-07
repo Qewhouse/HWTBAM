@@ -76,7 +76,7 @@ class RulesViewController: UIViewController {
     }
     
     @objc func clickReturn() {
-        print("return")
+        self.dismiss(animated: true)
     }
 }
 
@@ -109,9 +109,7 @@ extension RulesViewController {
             rulesTextLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             rulesTextLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             rulesTextLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-//            rulesTextLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, constant: -32),
 
-//            returnButton.topAnchor.constraint(equalTo: scrollView.bottomAnchor,constant: 16),
             returnButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
             returnButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
             returnButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16),
