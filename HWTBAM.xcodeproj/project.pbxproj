@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C472EC62994336100A05091 /* LoseScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C472EC52994336100A05091 /* LoseScreenViewController.swift */; };
 		3784E83B299195E8004F8235 /* Rules.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3784E83A299195E8004F8235 /* Rules.swift */; };
 		3784E83D2992EFCD004F8235 /* WinModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3784E83C2992EFCD004F8235 /* WinModel.swift */; };
 		3784E83F2992FAE4004F8235 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3784E83E2992FAE4004F8235 /* Theme.swift */; };
@@ -29,6 +30,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2C472EC52994336100A05091 /* LoseScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoseScreenViewController.swift; sourceTree = "<group>"; };
 		3784E83A299195E8004F8235 /* Rules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rules.swift; sourceTree = "<group>"; };
 		3784E83C2992EFCD004F8235 /* WinModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WinModel.swift; sourceTree = "<group>"; };
 		3784E83E2992FAE4004F8235 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
@@ -140,6 +142,7 @@
 			isa = PBXGroup;
 			children = (
 				37DFF9AA298F1858005BA055 /* StartViewController.swift */,
+				2C472EC52994336100A05091 /* LoseScreenViewController.swift */,
 				8E22FDA8298FE8BE0012A0D1 /* RulesViewController.swift */,
 				8E0C07D6299291DF0023F20F /* WiningViewController.swift */,
 			);
@@ -232,6 +235,7 @@
 				3784E83F2992FAE4004F8235 /* Theme.swift in Sources */,
 				3784E8432992FF53004F8235 /* AnswerModel.swift in Sources */,
 				3784E83D2992EFCD004F8235 /* WinModel.swift in Sources */,
+				2C472EC62994336100A05091 /* LoseScreenViewController.swift in Sources */,
 				8E0C07D7299291DF0023F20F /* WiningViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
