@@ -16,9 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     window = UIWindow(frame: UIScreen.main.bounds)
     window?.makeKeyAndVisible()
     window?.backgroundColor = .orange
-      #warning("удалить 21 строку!!!!!!!")
-//    window?.rootViewController = StartViewController()
-    window?.rootViewController = LoseScreenViewController()
+    window?.rootViewController = StartViewController()
     return true
   }
 
