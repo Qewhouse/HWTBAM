@@ -45,7 +45,7 @@ class RulesViewController: UIViewController {
         return label
     }()
 
-    private let returnButton: UIButton = {
+    private lazy var returnButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = UIColor(named: "green")
         button.tintColor = UIColor.white
