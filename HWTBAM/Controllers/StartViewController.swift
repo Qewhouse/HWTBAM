@@ -102,7 +102,7 @@ to be a Millionare ?
     }
     
     @objc func rulesButtonTapped() {
-        let rulesVC = RulesViewController()
+        let rulesVC = LoginViewController()
         rulesVC.modalPresentationStyle = .fullScreen
         present(rulesVC, animated: true)
     }
