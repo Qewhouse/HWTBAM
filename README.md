@@ -8,5 +8,8 @@
 - https://github.com/Qewhouse
 - https://github.com/Sosisya
 - https://github.com/FazilJabbarov
+- https://github.com/AltynbekDinmukhamed
+- https://github.com/Killkite
+- https://github.com/swiftGold
 
 Челлендж 01 группы от https://t.me/swiftmarathon
