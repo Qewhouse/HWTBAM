@@ -11,5 +11,6 @@
 - https://github.com/AltynbekDinmukhamed
 - https://github.com/Killkite
 - https://github.com/swiftGold
+- https://github.com/Ivan-Gouteev
 
 Челлендж 01 группы от https://t.me/swiftmarathon
