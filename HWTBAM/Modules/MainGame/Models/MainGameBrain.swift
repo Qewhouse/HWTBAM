@@ -12,20 +12,31 @@ struct MainGameBrain {
     let intArray = [1, 2, 3, 4]
     var hallHelp: HallHelpModel?
     
-    let quizMulti = [
-        QuestionMulti(q: "Which is the largest organ in the human body?", a: ["Heart", "Skin", "Large Intestine", "OMG testing"], correctAnswer: "2"),
-        QuestionMulti(q: "Five dollars is worth how many nickels?", a: ["25", "50", "100", "150"], correctAnswer: "3"),
-        QuestionMulti(q: "What do the letters in the GMT time zone stand for?", a: ["Global Meridian Time", "Greenwich Mean Time", "General Median Time", "OMG testing"], correctAnswer: "2"),
-        QuestionMulti(q: "What is the French word for 'hat'?", a: ["Chapeau", "Écharpe", "Bonnet", "OMG testing"], correctAnswer: "1")
-    ]
+        let quiz = [
+        Question(text: "Универсальные шаблоны помогают реализовать это", answer: ["Архитектуру", "Коллекции", "Переменные свойства", "Гибкие функции"], correctAnswer: "4"),
+        Question(text: "Сколько способов обработки ошибок существует в Swift?", answer: ["2", "4", "1", "3"], correctAnswer: "2"),
+        Question(text: "Обработка ошибок, это процесс ...?", answer: ["Реагирования на ошибки", "Прогнозирования ошибок", "Хранения ошибок", "Генерации ошибок"], correctAnswer: "1"),
+        Question(text: "Как называется класс, у которого наследуют?", answer: ["Наследник", "Класс", "Подкласс", "Суперкласс"], correctAnswer: "4"),
+        Question(text: "Если String пустая, то startIndex и endIndex будут ...?", answer: ["Пустыми", "nil", "Неравными", "Равными"], correctAnswer: "4"),
+        Question(text: "Как традиционно называют экземпляр класса в ООП?", answer: ["Экземпляр", "Структура", "Объект", "Таргет"], correctAnswer: "3"),
+        Question(text: "Что из перечисленного является ссылочным типом?", answer: ["Свойства", "Структуры", "Классы", "Перечисления"], correctAnswer: "3"),
+        Question(text: "Можно ли сравнивать две строки?", answer: ["Нет", "Да", "Только !=", "Только =="], correctAnswer: "2"),
+        Question(text: "Как пишется сокращенная форма записи массива в Swift?", answer: ["Array<ElementType>", "Array(ElementType)[]", "[ElementType]", "[ElementType]()"], correctAnswer: "3"),
+        Question(text: "Сколько основных типов коллекций обеспечивает Swift?", answer: ["3", "5", "2", "4"], correctAnswer: "1"),
+        Question(text: "Сколько основных свойств имеет UIStackView?", answer: ["4", "3", "2", "1"], correctAnswer: "1"),
+        Question(text: "Для каких типов доступны деинициализаторы?", answer: ["Типы перечислений", "Структурные типы", "Все перечисленные ", "Классовые типы"], correctAnswer: "4"),
+        Question(text: "Чем разделяются протокола в композиции протоколов?", answer: [",", "&", "-", ":"], correctAnswer: "2"),
+        Question(text: "Какой тип хранит только положительные целые числа?", answer: ["UInt", "Int", "Double", "Float"], correctAnswer: "1"),
+        Question(text: "Являются ли Swift Array универсальными?", answer: ["Нет", "Только Dictionary", "Да", "Только Array"], correctAnswer: "3")
+        ]
     
     func getQuestionText() -> String {
-        return quizMulti[questionNumber].q
+        return quiz[questionNumber].text
     }
     
      mutating func nextQuestion() {
         
-        if questionNumber + 1 < quizMulti.count {
+        if questionNumber + 1 < quiz.count {
             questionNumber += 1
         } else {
             questionNumber = 0
@@ -33,7 +44,7 @@ struct MainGameBrain {
     }
     
     func checkAnswer(userAnswer: String) -> Bool {
-        if userAnswer == quizMulti[questionNumber].correctAnswer {
+        if userAnswer == quiz[questionNumber].correctAnswer {
             return true
         } else {
             return false
@@ -41,7 +52,7 @@ struct MainGameBrain {
     }
     
     func getButtonTitle(with buttonNumber: Int) -> String {
-        let stringValue = quizMulti[questionNumber].a[buttonNumber]
+        let stringValue = quiz[questionNumber].answer[buttonNumber]
         return stringValue
     }
     //TODO: - отследить, нужен ли mutating
@@ -132,7 +143,7 @@ struct MainGameBrain {
     }
     
     func getCorrectInt() -> Int {
-        guard let correctInt = Int(quizMulti[questionNumber].correctAnswer) else { fatalError() }
+        guard let correctInt = Int(quiz[questionNumber].correctAnswer) else { fatalError() }
         return correctInt
     }
 }
