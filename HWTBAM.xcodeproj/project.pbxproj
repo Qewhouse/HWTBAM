@@ -27,6 +27,7 @@
 		8E0C07D929929C8A0023F20F /* Prize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E0C07D829929C8A0023F20F /* Prize.swift */; };
 		8E0C07DB2992A2570023F20F /* WiningTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E0C07DA2992A2570023F20F /* WiningTableViewCell.swift */; };
 		8E22FDA9298FE8BE0012A0D1 /* RulesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E22FDA8298FE8BE0012A0D1 /* RulesViewController.swift */; };
+		8E6486F5299495FF00FD39F4 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6486F4299495FF00FD39F4 /* LoginViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +53,7 @@
 		8E0C07D829929C8A0023F20F /* Prize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prize.swift; sourceTree = "<group>"; };
 		8E0C07DA2992A2570023F20F /* WiningTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WiningTableViewCell.swift; sourceTree = "<group>"; };
 		8E22FDA8298FE8BE0012A0D1 /* RulesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RulesViewController.swift; sourceTree = "<group>"; };
+		8E6486F4299495FF00FD39F4 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +147,7 @@
 				2C472EC52994336100A05091 /* LoseScreenViewController.swift */,
 				8E22FDA8298FE8BE0012A0D1 /* RulesViewController.swift */,
 				8E0C07D6299291DF0023F20F /* WiningViewController.swift */,
+				8E6486F4299495FF00FD39F4 /* LoginViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -224,6 +227,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8E6486F5299495FF00FD39F4 /* LoginViewController.swift in Sources */,
 				3784E8412992FEEE004F8235 /* PlayerAnswer.swift in Sources */,
 				37DFF9AB298F1858005BA055 /* StartViewController.swift in Sources */,
 				37DFF9A7298F1858005BA055 /* AppDelegate.swift in Sources */,
