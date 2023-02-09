@@ -93,11 +93,10 @@ to be a Millionare ?
     func buttonTapped() {
         startButton.addTarget(self, action: #selector(startButtonTapped), for: .touchUpInside)
         rulesButton.addTarget(self, action: #selector(rulesButtonTapped), for: .touchUpInside)
-
     }
     
     @objc func startButtonTapped() {
-        let winVC = WiningViewController()
+        let winVC = MainGameViewController()
         winVC.modalPresentationStyle = .fullScreen
         present(winVC, animated: true)
     }

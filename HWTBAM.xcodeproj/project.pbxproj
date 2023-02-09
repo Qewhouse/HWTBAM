@@ -18,6 +18,11 @@
 		37DFF9AB298F1858005BA055 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DFF9AA298F1858005BA055 /* StartViewController.swift */; };
 		37DFF9B0298F1859005BA055 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37DFF9AF298F1859005BA055 /* Assets.xcassets */; };
 		37DFF9B3298F1859005BA055 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 37DFF9B1298F1859005BA055 /* LaunchScreen.storyboard */; };
+		542BA8212994EDDF0017C36A /* MainGameBrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 542BA8202994EDDF0017C36A /* MainGameBrain.swift */; };
+		542BA8232994EDEB0017C36A /* HallHelpModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 542BA8222994EDEB0017C36A /* HallHelpModel.swift */; };
+		542BA8252994EE000017C36A /* QuestionMulti.swift in Sources */ = {isa = PBXBuildFile; fileRef = 542BA8242994EE000017C36A /* QuestionMulti.swift */; };
+		542BA8272994EEFE0017C36A /* MainGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 542BA8262994EEFE0017C36A /* MainGameViewController.swift */; };
+		542BA8292994F1910017C36A /* HallHelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 542BA8282994F1910017C36A /* HallHelpViewController.swift */; };
 		8E0C07CD29924FEB0023F20F /* rightAnswer.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8E0C07C829924FEA0023F20F /* rightAnswer.mp3 */; };
 		8E0C07CE29924FEB0023F20F /* timing.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8E0C07C929924FEB0023F20F /* timing.mp3 */; };
 		8E0C07CF29924FEB0023F20F /* acceptedAnswer.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8E0C07CA29924FEB0023F20F /* acceptedAnswer.mp3 */; };
@@ -44,6 +49,11 @@
 		37DFF9AF298F1859005BA055 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		37DFF9B2298F1859005BA055 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		37DFF9B4298F1859005BA055 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		542BA8202994EDDF0017C36A /* MainGameBrain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainGameBrain.swift; sourceTree = "<group>"; };
+		542BA8222994EDEB0017C36A /* HallHelpModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HallHelpModel.swift; sourceTree = "<group>"; };
+		542BA8242994EE000017C36A /* QuestionMulti.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionMulti.swift; sourceTree = "<group>"; };
+		542BA8262994EEFE0017C36A /* MainGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainGameViewController.swift; sourceTree = "<group>"; };
+		542BA8282994F1910017C36A /* HallHelpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HallHelpViewController.swift; sourceTree = "<group>"; };
 		8E0C07C829924FEA0023F20F /* rightAnswer.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = rightAnswer.mp3; sourceTree = "<group>"; };
 		8E0C07C929924FEB0023F20F /* timing.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = timing.mp3; sourceTree = "<group>"; };
 		8E0C07CA29924FEB0023F20F /* acceptedAnswer.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = acceptedAnswer.mp3; sourceTree = "<group>"; };
@@ -123,6 +133,7 @@
 		37DFF9BC298F1960005BA055 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				542BA81F2994EDC40017C36A /* MainGameModels */,
 				3784E83C2992EFCD004F8235 /* WinModel.swift */,
 				3784E8402992FEEE004F8235 /* PlayerAnswer.swift */,
 				3784E8422992FF53004F8235 /* AnswerModel.swift */,
@@ -148,8 +159,20 @@
 				8E22FDA8298FE8BE0012A0D1 /* RulesViewController.swift */,
 				8E0C07D6299291DF0023F20F /* WiningViewController.swift */,
 				8E6486F4299495FF00FD39F4 /* LoginViewController.swift */,
+				542BA8262994EEFE0017C36A /* MainGameViewController.swift */,
+				542BA8282994F1910017C36A /* HallHelpViewController.swift */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		542BA81F2994EDC40017C36A /* MainGameModels */ = {
+			isa = PBXGroup;
+			children = (
+				542BA8202994EDDF0017C36A /* MainGameBrain.swift */,
+				542BA8222994EDEB0017C36A /* HallHelpModel.swift */,
+				542BA8242994EE000017C36A /* QuestionMulti.swift */,
+			);
+			path = MainGameModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -229,15 +252,20 @@
 			files = (
 				8E6486F5299495FF00FD39F4 /* LoginViewController.swift in Sources */,
 				3784E8412992FEEE004F8235 /* PlayerAnswer.swift in Sources */,
+				542BA8292994F1910017C36A /* HallHelpViewController.swift in Sources */,
 				37DFF9AB298F1858005BA055 /* StartViewController.swift in Sources */,
+				542BA8272994EEFE0017C36A /* MainGameViewController.swift in Sources */,
+				542BA8212994EDDF0017C36A /* MainGameBrain.swift in Sources */,
 				37DFF9A7298F1858005BA055 /* AppDelegate.swift in Sources */,
 				8E22FDA9298FE8BE0012A0D1 /* RulesViewController.swift in Sources */,
 				8E0C07DB2992A2570023F20F /* WiningTableViewCell.swift in Sources */,
 				8E0C07D929929C8A0023F20F /* Prize.swift in Sources */,
 				37DFF9A9298F1858005BA055 /* SceneDelegate.swift in Sources */,
+				542BA8232994EDEB0017C36A /* HallHelpModel.swift in Sources */,
 				3784E83B299195E8004F8235 /* Rules.swift in Sources */,
 				3784E83F2992FAE4004F8235 /* Theme.swift in Sources */,
 				3784E8432992FF53004F8235 /* AnswerModel.swift in Sources */,
+				542BA8252994EE000017C36A /* QuestionMulti.swift in Sources */,
 				3784E83D2992EFCD004F8235 /* WinModel.swift in Sources */,
 				2C472EC62994336100A05091 /* LoseScreenViewController.swift in Sources */,
 				8E0C07D7299291DF0023F20F /* WiningViewController.swift in Sources */,
@@ -308,7 +336,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -362,7 +390,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -377,9 +405,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 2JBA92AKK9;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = HWTBAM/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -394,6 +423,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.qewhouse.HWTBAM;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -408,9 +438,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 2JBA92AKK9;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = HWTBAM/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -425,6 +456,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.qewhouse.HWTBAM;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
