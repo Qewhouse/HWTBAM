@@ -346,9 +346,9 @@ class MainGameViewController: UIViewController {
     private func didTapAnswerButton(_ sender: UIButton) {
         let userAnswer = sender.tag
         let userGotItRight = mainGameBrain.checkAnswer(userAnswer: String(userAnswer))
-        
+        let index = mainGameBrain.questionNumber
+
         if userGotItRight {
-            let index = mainGameBrain.questionNumber
             
             sender.backgroundColor = UIColor.green
             mainGameBrain.forEachArray(labelArray, sender.tag, .green)
@@ -363,10 +363,6 @@ class MainGameViewController: UIViewController {
         } else {
             sender.backgroundColor = UIColor.red
             mainGameBrain.forEachArray(labelArray, sender.tag, .red)
-            
-            let viewController = LoseScreenViewController()
-            viewController.modalPresentationStyle = .fullScreen
-            present(viewController, animated: false)
         }
         
 //        mainGameBrain.nextQuestion()
