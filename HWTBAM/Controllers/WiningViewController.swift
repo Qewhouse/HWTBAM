@@ -33,12 +33,26 @@ final class WiningViewController: UIViewController {
         setupConstraint()
     }
     
+    private func addTaps() {
+            let tapScreen = UITapGestureRecognizer(target: self, action: #selector(viewTaps))
+            tapScreen.cancelsTouchesInView = false
+            view.addGestureRecognizer(tapScreen)
+        }
+        
+        @objc private func viewTaps() {
+            let mainVC = MainGameViewController()
+            let navigationController = UINavigationController(rootViewController: mainVC)
+            navigationController.modalPresentationStyle = .fullScreen
+            present(navigationController, animated: false)
+        }
+    
     func setupLayout() {
         view.addSubview(backgroundImageView)
         view.addSubview(headerImage)
         view.addSubview(moneyList)
         moneyList.dataSource = self
         moneyList.delegate = self
+        addTaps()
     }
 }
 
