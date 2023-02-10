@@ -1,6 +1,10 @@
 import UIKit
+import AVFoundation
 
 class LoginViewController: UIViewController {
+    
+    var player: AVAudioPlayer?
+    let music = MusicModel()
 
     private let backgroundImageView: UIImageView = {
         let image = UIImageView()
@@ -102,6 +106,7 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViewController()
+        music.playSound(nameOfMusic: "Rules Music")
     }
     
     @objc
@@ -111,6 +116,7 @@ class LoginViewController: UIViewController {
     
     @objc
     private func didTapRegestrationButton() {
+        music.playSound(nameOfMusic: "Button Push")
         let rulesVC = RegistrationViewController()
         rulesVC.modalPresentationStyle = .fullScreen
         present(rulesVC, animated: true)
@@ -118,6 +124,7 @@ class LoginViewController: UIViewController {
     
     @objc
     private func didTapGuestButton() {
+        music.playSound(nameOfMusic: "Button Push")
         let viewController = MainGameViewController()
         viewController.setupLoginLabel("Гость")
         viewController.modalPresentationStyle = .fullScreen
@@ -142,6 +149,7 @@ private extension LoginViewController {
                 let viewController = MainGameViewController()
                 viewController.modalPresentationStyle = .fullScreen
                 viewController.setupLoginLabel(user.loginName)
+                music.playSound(nameOfMusic: "Button Push")
                 present(viewController, animated: true)
             } else {
                     wrongLogPas()

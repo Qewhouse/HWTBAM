@@ -13,6 +13,13 @@
 		3784E83F2992FAE4004F8235 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3784E83E2992FAE4004F8235 /* Theme.swift */; };
 		3784E8412992FEEE004F8235 /* PlayerAnswer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3784E8402992FEEE004F8235 /* PlayerAnswer.swift */; };
 		3784E8432992FF53004F8235 /* AnswerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3784E8422992FF53004F8235 /* AnswerModel.swift */; };
+		37BF94AC2996E4E0008AC727 /* MusicModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BF94AB2996E4E0008AC727 /* MusicModel.swift */; };
+		37BF94AE2996E6BA008AC727 /* 50-50.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 37BF94AD2996E6BA008AC727 /* 50-50.mp3 */; };
+		37BF94B02996E6F4008AC727 /* Rules Music.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 37BF94AF2996E6F4008AC727 /* Rules Music.mp3 */; };
+		37BF94B22996E70A008AC727 /* Hint Chosen.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 37BF94B12996E70A008AC727 /* Hint Chosen.mp3 */; };
+		37BF94B42996E73F008AC727 /* Button Push.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 37BF94B32996E73F008AC727 /* Button Push.mp3 */; };
+		37BF94B62996E74B008AC727 /* StartSound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 37BF94B52996E74B008AC727 /* StartSound.mp3 */; };
+		37BF94B82996F2A7008AC727 /* timingAfter.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 37BF94B72996F2A7008AC727 /* timingAfter.mp3 */; };
 		37DFF9A7298F1858005BA055 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DFF9A6298F1858005BA055 /* AppDelegate.swift */; };
 		37DFF9A9298F1858005BA055 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DFF9A8298F1858005BA055 /* SceneDelegate.swift */; };
 		37DFF9AB298F1858005BA055 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DFF9AA298F1858005BA055 /* StartViewController.swift */; };
@@ -49,6 +56,13 @@
 		3784E83E2992FAE4004F8235 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		3784E8402992FEEE004F8235 /* PlayerAnswer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerAnswer.swift; sourceTree = "<group>"; };
 		3784E8422992FF53004F8235 /* AnswerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerModel.swift; sourceTree = "<group>"; };
+		37BF94AB2996E4E0008AC727 /* MusicModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicModel.swift; sourceTree = "<group>"; };
+		37BF94AD2996E6BA008AC727 /* 50-50.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "50-50.mp3"; sourceTree = "<group>"; };
+		37BF94AF2996E6F4008AC727 /* Rules Music.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Rules Music.mp3"; sourceTree = "<group>"; };
+		37BF94B12996E70A008AC727 /* Hint Chosen.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Hint Chosen.mp3"; sourceTree = "<group>"; };
+		37BF94B32996E73F008AC727 /* Button Push.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Button Push.mp3"; sourceTree = "<group>"; };
+		37BF94B52996E74B008AC727 /* StartSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = StartSound.mp3; sourceTree = "<group>"; };
+		37BF94B72996F2A7008AC727 /* timingAfter.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = timingAfter.mp3; sourceTree = "<group>"; };
 		37DFF9A3298F1858005BA055 /* HWTBAM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HWTBAM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		37DFF9A6298F1858005BA055 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		37DFF9A8298F1858005BA055 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -142,6 +156,12 @@
 				8E0C07CA29924FEB0023F20F /* acceptedAnswer.mp3 */,
 				8E0C07C829924FEA0023F20F /* rightAnswer.mp3 */,
 				8E0C07CC29924FEB0023F20F /* wrongAnswer.mp3 */,
+				37BF94B12996E70A008AC727 /* Hint Chosen.mp3 */,
+				37BF94B32996E73F008AC727 /* Button Push.mp3 */,
+				37BF94B72996F2A7008AC727 /* timingAfter.mp3 */,
+				37BF94B52996E74B008AC727 /* StartSound.mp3 */,
+				37BF94AD2996E6BA008AC727 /* 50-50.mp3 */,
+				37BF94AF2996E6F4008AC727 /* Rules Music.mp3 */,
 				8E0C07CB29924FEB0023F20F /* win.mp3 */,
 			);
 			path = Resources;
@@ -186,6 +206,7 @@
 				542BA8202994EDDF0017C36A /* MainGameBrain.swift */,
 				542BA8222994EDEB0017C36A /* HallHelpModel.swift */,
 				542BA8242994EE000017C36A /* QuestionMulti.swift */,
+				37BF94AB2996E4E0008AC727 /* MusicModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -361,9 +382,15 @@
 				8E0C07CE29924FEB0023F20F /* timing.mp3 in Resources */,
 				8E0C07D129924FEB0023F20F /* wrongAnswer.mp3 in Resources */,
 				37DFF9B3298F1859005BA055 /* LaunchScreen.storyboard in Resources */,
+				37BF94B62996E74B008AC727 /* StartSound.mp3 in Resources */,
+				37BF94B02996E6F4008AC727 /* Rules Music.mp3 in Resources */,
+				37BF94B82996F2A7008AC727 /* timingAfter.mp3 in Resources */,
+				37BF94B22996E70A008AC727 /* Hint Chosen.mp3 in Resources */,
 				37DFF9B0298F1859005BA055 /* Assets.xcassets in Resources */,
+				37BF94B42996E73F008AC727 /* Button Push.mp3 in Resources */,
 				8E0C07D029924FEB0023F20F /* win.mp3 in Resources */,
 				8E0C07CD29924FEB0023F20F /* rightAnswer.mp3 in Resources */,
+				37BF94AE2996E6BA008AC727 /* 50-50.mp3 in Resources */,
 				8E0C07CF29924FEB0023F20F /* acceptedAnswer.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -377,6 +404,7 @@
 			files = (
 				8E6486F5299495FF00FD39F4 /* LoginViewController.swift in Sources */,
 				3784E8412992FEEE004F8235 /* PlayerAnswer.swift in Sources */,
+				37BF94AC2996E4E0008AC727 /* MusicModel.swift in Sources */,
 				542BA8292994F1910017C36A /* HallHelpViewController.swift in Sources */,
 				542BA838299507300017C36A /* KeyValueStorage.swift in Sources */,
 				37DFF9AB298F1858005BA055 /* StartViewController.swift in Sources */,
