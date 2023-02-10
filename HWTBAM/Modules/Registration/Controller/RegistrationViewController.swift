@@ -119,7 +119,6 @@ private extension RegistrationViewController {
     }
     
     func addSubviews() {
-        mainStackView.addArrangedSubview(logoImageView)
         mainStackView.addArrangedSubview(nameLoginLabel)
         mainStackView.addArrangedSubview(nameRegistrationTextField)
         mainStackView.addArrangedSubview(passwordRegistrationLabel)
@@ -127,19 +126,25 @@ private extension RegistrationViewController {
         mainStackView.addArrangedSubview(confirmButton)
 
         view.addSubview(backgroundImageView)
+        view.addSubview(logoImageView)
         view.addSubview(mainStackView)
     }
     
     func setConstraint() {
         NSLayoutConstraint.activate([
+            logoImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
+            logoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            logoImageView.heightAnchor.constraint(equalToConstant: 200),
+            logoImageView.widthAnchor.constraint(equalToConstant: 200),
+            
             backgroundImageView.topAnchor.constraint(equalTo: view.topAnchor),
             backgroundImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             backgroundImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             backgroundImageView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             
-            mainStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
-            mainStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
-            mainStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10),
+            mainStackView.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: 16),
+            mainStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            mainStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -250),
             mainStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10)
         ])
     }
