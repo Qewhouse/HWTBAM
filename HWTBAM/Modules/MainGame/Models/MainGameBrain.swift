@@ -55,7 +55,7 @@ struct MainGameBrain {
         let stringValue = quiz[questionNumber].answer[buttonNumber]
         return stringValue
     }
-    //TODO: - отследить, нужен ли mutating
+    
     mutating func promptFifryFifry(_ buttons: [UIButton]) {
         let twoNumberArray = fiftyFifty()
         
