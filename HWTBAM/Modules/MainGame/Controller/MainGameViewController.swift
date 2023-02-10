@@ -56,6 +56,28 @@ class MainGameViewController: UIViewController {
         return label
     }()
     
+    private let loginLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.boldSystemFont(ofSize: 24)
+        label.textColor = .green
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "guest"
+        label.numberOfLines = 0
+        label.textAlignment = .left
+        return label
+    }()
+    
+    private let moneyLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.boldSystemFont(ofSize: 24)
+        label.textColor = .green
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "0000"
+        label.numberOfLines = 0
+        label.textAlignment = .right
+        return label
+    }()
+    
     private let topView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -239,6 +261,15 @@ class MainGameViewController: UIViewController {
         return stackView
     }()
     
+    private let loginMoneyStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.spacing = 10
+        stackView.distribution = .fillEqually
+        stackView.axis = .horizontal
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
+    
     private let answersBlockStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.spacing = 35
@@ -303,6 +334,14 @@ class MainGameViewController: UIViewController {
         updateUI()
     }
     
+    func setupLoginLabel(_ name: String) {
+        loginLabel.text = name
+    }
+    
+    func setupMoneyLabel(_ bablo: Int) {
+        moneyLabel.text = String(bablo)
+    }
+    
     @objc
     private func didTapAnswerButton(_ sender: UIButton) {
         let userAnswer = sender.tag
@@ -311,9 +350,17 @@ class MainGameViewController: UIViewController {
         if userGotItRight {
             sender.backgroundColor = UIColor.green
             mainGameBrain.forEachArray(labelArray, sender.tag, .green)
+            
+            let viewController = WiningViewController()
+            viewController.modalPresentationStyle = .fullScreen
+            present(viewController, animated: false)
         } else {
             sender.backgroundColor = UIColor.red
             mainGameBrain.forEachArray(labelArray, sender.tag, .red)
+            
+            let viewController = LoseScreenViewController()
+            viewController.modalPresentationStyle = .fullScreen
+            present(viewController, animated: false)
         }
         
         mainGameBrain.nextQuestion()
@@ -332,16 +379,12 @@ class MainGameViewController: UIViewController {
     private func didTapHallHelpButton(_ sender: UIButton) {
         mainGameBrain.hallHelpValues()
         guard let hallHelp = mainGameBrain.hallHelp else { fatalError() }
-//        let intValue = mainGameBrain.getCorrectInt()
 
         mainGameBrain.disableButton(sender, "redCrossHallHelp")
 
         let viewController = HallHelpViewController()
         viewController.setupHallHelp(with: hallHelp)
         present(viewController, animated: false)
-        
-//        mainGameBrain.forEachArray(buttonsArray, intValue, .purple)
-//        mainGameBrain.forEachArray(labelArray, intValue, .purple)
     }
     
     @objc
@@ -390,6 +433,9 @@ private extension MainGameViewController {
         numberCostStackView.addArrangedSubview(questionNumberLabel)
         numberCostStackView.addArrangedSubview(questionCostLabel)
         
+        loginMoneyStackView.addArrangedSubview(loginLabel)
+        loginMoneyStackView.addArrangedSubview(moneyLabel)
+        
         answersBlockStackView.addArrangedSubview(answerAButton)
         answersBlockStackView.addArrangedSubview(answerBButton)
         answersBlockStackView.addArrangedSubview(answerCButton)
@@ -409,6 +455,7 @@ private extension MainGameViewController {
         
         mainStackView.addArrangedSubview(topStackView)
         mainStackView.addArrangedSubview(numberCostStackView)
+        mainStackView.addArrangedSubview(loginMoneyStackView)
         mainStackView.addArrangedSubview(topView)
         mainStackView.addArrangedSubview(centerStackView)
         mainStackView.addArrangedSubview(bottomView)
@@ -444,9 +491,9 @@ private extension MainGameViewController {
             centerStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
             centerStackView.heightAnchor.constraint(equalToConstant: 310),
             
-            topView.heightAnchor.constraint(equalToConstant: 60),
+            topView.heightAnchor.constraint(equalToConstant: 90),
             
-            bottomView.heightAnchor.constraint(equalToConstant: 110),
+            bottomView.heightAnchor.constraint(equalToConstant: 80),
             
             promptStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             promptStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),

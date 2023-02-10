@@ -78,11 +78,12 @@ class LoseScreenViewController: UIViewController {
     
     func buttonTapped() {
         playAgainButton.addTarget(self, action: #selector(playAgainButtonTapped), for: .touchUpInside)
-        
     }
     
     @objc func playAgainButtonTapped() {
-        print("playAgainButton")
+        let viewController = MainGameViewController()
+        viewController.modalPresentationStyle = .fullScreen
+        present(viewController, animated: false)
     }
     
     private func setLayot() {
@@ -118,46 +119,7 @@ class LoseScreenViewController: UIViewController {
             playAgainButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             playAgainButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             playAgainButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -100)
-            
-            
         ])
-    }
-    
-
-    
-    struct ViewControllerPreview: UIViewControllerRepresentable {
-        let viewControllerGenerator: () -> UIViewController
-        
-        init(viewControllerGenerator: @escaping () -> UIViewController) {
-            self.viewControllerGenerator = viewControllerGenerator
-        }
-        
-        func makeUIViewController(context: Context) -> some UIViewController {
-            viewControllerGenerator()
-        }
-        
-        func updateUIViewController(_ UIViewController: UIViewControllerType, context: Context) {
-            
-        }
-    }
-    
-    class SuccessTableView: UIViewController {
-        
-        override func viewDidLoad() {
-            super.viewDidLoad()
-            view.backgroundColor = .black
-            
-        }
-        
-        
-    }
-    
-    struct ViewControllerProvider: PreviewProvider {
-        static var previews: some View {
-            ViewControllerPreview {
-                SuccessTableView()
-            }.edgesIgnoringSafeArea(.all)
-        }
     }
 }
 

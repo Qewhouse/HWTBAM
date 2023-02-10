@@ -96,13 +96,13 @@ to be a Millionare ?
     }
     
     @objc func startButtonTapped() {
-        let winVC = MainGameViewController()
-        winVC.modalPresentationStyle = .fullScreen
-        present(winVC, animated: true)
+        let rulesVC = LoginViewController()
+        rulesVC.modalPresentationStyle = .fullScreen
+        present(rulesVC, animated: true)
     }
     
     @objc func rulesButtonTapped() {
-        let rulesVC = LoginViewController()
+        let rulesVC = RulesViewController()
         rulesVC.modalPresentationStyle = .fullScreen
         present(rulesVC, animated: true)
     }

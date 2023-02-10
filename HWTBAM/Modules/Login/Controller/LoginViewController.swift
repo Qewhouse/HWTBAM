@@ -119,6 +119,7 @@ class LoginViewController: UIViewController {
     @objc
     private func didTapGuestButton() {
         let viewController = MainGameViewController()
+        viewController.setupLoginLabel("Гость")
         viewController.modalPresentationStyle = .fullScreen
         present(viewController, animated: true)
     }
@@ -140,6 +141,7 @@ private extension LoginViewController {
             if password == user.password && login == user.loginName {
                 let viewController = MainGameViewController()
                 viewController.modalPresentationStyle = .fullScreen
+                viewController.setupLoginLabel(user.loginName)
                 present(viewController, animated: true)
             } else {
                     wrongLogPas()
