@@ -338,8 +338,8 @@ class MainGameViewController: UIViewController {
         loginLabel.text = name
     }
     
-    func setupMoneyLabel(_ bablo: Int) {
-        moneyLabel.text = String(bablo)
+    func setupMoneyLabel(_ bablo: String) {
+        moneyLabel.text = bablo
     }
     
     @objc
@@ -348,12 +348,18 @@ class MainGameViewController: UIViewController {
         let userGotItRight = mainGameBrain.checkAnswer(userAnswer: String(userAnswer))
         
         if userGotItRight {
+            let index = mainGameBrain.questionNumber
+            
             sender.backgroundColor = UIColor.green
             mainGameBrain.forEachArray(labelArray, sender.tag, .green)
             
             let viewController = WiningViewController()
+            viewController.setIndex(mainGameBrain.numberArray[index])
+            viewController.playerAnswer = PlayerAnswer(question: mainGameBrain.questionNumberArray[index], result: true)
+            
             viewController.modalPresentationStyle = .fullScreen
             present(viewController, animated: false)
+            
         } else {
             sender.backgroundColor = UIColor.red
             mainGameBrain.forEachArray(labelArray, sender.tag, .red)
@@ -363,7 +369,7 @@ class MainGameViewController: UIViewController {
             present(viewController, animated: false)
         }
         
-        mainGameBrain.nextQuestion()
+//        mainGameBrain.nextQuestion()
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { [weak self] in
             self?.updateUI()
         }

@@ -2,7 +2,7 @@ import UIKit
 
 final class WiningViewController: UIViewController {
 
-    private let playerAnswer: PlayerAnswer? = nil
+    var playerAnswer: PlayerAnswer?
     private var answerModel: AnswerModel?
     
     private let backgroundImageView: UIImageView = {
@@ -26,11 +26,18 @@ final class WiningViewController: UIViewController {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
- 
+    
+    let moneyArray = ["100", "200", "300", "500", "1 000", "2 000", "4 000", "8 000", "16 000", "32 000", "64 000", "125 000", "250 000", "500 000", "1 000 000"]
+    var index = 0
+     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupLayout()
         setupConstraint()
+    }
+    
+    func setIndex(_ value: Int) {
+        index = value
     }
     
     private func addTaps() {
@@ -40,10 +47,12 @@ final class WiningViewController: UIViewController {
         }
         
         @objc private func viewTaps() {
+            let upperIndex = index + 1
             let mainVC = MainGameViewController()
-            let navigationController = UINavigationController(rootViewController: mainVC)
-            navigationController.modalPresentationStyle = .fullScreen
-            present(navigationController, animated: false)
+            mainVC.mainGameBrain.nextQuestion(upperIndex)
+            mainVC.setupMoneyLabel(moneyArray[index])
+            mainVC.modalPresentationStyle = .fullScreen
+            present(mainVC, animated: false)
         }
     
     func setupLayout() {
@@ -67,7 +76,7 @@ extension WiningViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: WiningTableViewCell.id, for: indexPath) as? WiningTableViewCell
-        let currentQuestion = answerModel?.question == indexPath.row && playerAnswer?.result != nil
+        let currentQuestion = playerAnswer?.question == indexPath.row && playerAnswer?.result != nil
         cell?.configure(model: WinModel.winModels[indexPath.row], currentQuestion: currentQuestion)
         return cell ?? UITableViewCell()
     }

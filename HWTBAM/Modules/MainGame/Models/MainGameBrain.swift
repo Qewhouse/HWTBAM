@@ -30,18 +30,25 @@ struct MainGameBrain {
         Question(text: "Являются ли Swift Array универсальными?", answer: ["Нет", "Только Dictionary", "Да", "Только Array"], correctAnswer: "3")
         ]
     
+    let questionNumberArray = [14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0]
+    let numberArray = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+    
     func getQuestionText() -> String {
         return quiz[questionNumber].text
     }
     
-     mutating func nextQuestion() {
-        
-        if questionNumber + 1 < quiz.count {
-            questionNumber += 1
-        } else {
-            questionNumber = 0
-        }
-    }
+//     mutating func nextQuestion() {
+//
+//        if questionNumber + 1 < quiz.count {
+//            questionNumber += 1
+//        } else {
+//            questionNumber = 0
+//        }
+//    }
+    
+    mutating func nextQuestion(_ intValue: Int) {
+           questionNumber = intValue
+   }
     
     func checkAnswer(userAnswer: String) -> Bool {
         if userAnswer == quiz[questionNumber].correctAnswer {

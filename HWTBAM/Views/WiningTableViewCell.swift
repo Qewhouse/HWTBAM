@@ -47,7 +47,7 @@ final class WiningTableViewCell: UITableViewCell {
         prizeLabel.text = model.prize.rawValue
         questionLabel.text = model.number.rawValue
         if currentQuestion {
-            backgroundColor = .systemYellow
+            backgroundColor = .systemGreen
             prizeLabel.font = .boldSystemFont(ofSize: 25)
         } else {
             prizeLabel.backgroundColor = model.backgroundcolorLabel
