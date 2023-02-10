@@ -5,9 +5,12 @@
 //  Created by Сергей Золотухин on 09.02.2023.
 //
 import UIKit
+import AVFoundation
 
 class RegistrationViewController: UIViewController {
 
+    let music = MusicModel()
+    
     private let backgroundImageView: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
@@ -90,12 +93,14 @@ class RegistrationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViewController()
+        music.playSound(nameOfMusic: "Rules Music")
     }
     
     @objc
     private func didTapConfirmButton() {
         if nameRegistrationTextField.text != "" && passwordRegistrationTextField.text != "" {
             setStorage()
+            music.playSound(nameOfMusic: "Button Push")
             dismiss(animated: false)
         } else {
             nameLoginLabel.text = "заполните логин и пароль"

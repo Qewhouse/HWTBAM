@@ -1,7 +1,10 @@
 import UIKit
+import AVFoundation
 
 final class WiningViewController: UIViewController {
 
+    let music = MusicModel()
+    
     var playerAnswer: PlayerAnswer?
     private var answerModel: AnswerModel?
     
@@ -52,6 +55,7 @@ final class WiningViewController: UIViewController {
             mainVC.mainGameBrain.nextQuestion(upperIndex)
             mainVC.setupMoneyLabel(moneyArray[index])
             mainVC.modalPresentationStyle = .fullScreen
+            music.player?.stop()
             present(mainVC, animated: false)
         }
     

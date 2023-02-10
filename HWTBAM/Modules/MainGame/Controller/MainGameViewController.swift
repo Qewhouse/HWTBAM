@@ -6,8 +6,11 @@
 //
 
 import UIKit
+import AVFoundation
 
 class MainGameViewController: UIViewController {
+    
+    let music = MusicModel()
     
     private let backgroundImageView: UIImageView = {
         let imageView = UIImageView()
@@ -332,6 +335,17 @@ class MainGameViewController: UIViewController {
         super.viewDidLoad()
         setupViewController()
         updateUI()
+        music.playSound(nameOfMusic: "timing")
+        music.player?.numberOfLoops = 5
+    }
+    
+//    override func viewWillDisappear(_ animated: Bool) {
+//        music.player?.pause()
+//    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        music.playSound(nameOfMusic: "timing")
+        music.player?.numberOfLoops = 5
     }
     
     func setupLoginLabel(_ name: String) {
@@ -347,7 +361,9 @@ class MainGameViewController: UIViewController {
         let userAnswer = sender.tag
         let userGotItRight = mainGameBrain.checkAnswer(userAnswer: String(userAnswer))
         let index = mainGameBrain.questionNumber
-
+       
+        music.playSound(nameOfMusic: "acceptedAnswer")
+        
         if userGotItRight {
             
             sender.backgroundColor = UIColor.green
@@ -357,11 +373,14 @@ class MainGameViewController: UIViewController {
             viewController.setIndex(mainGameBrain.numberArray[index])
             viewController.playerAnswer = PlayerAnswer(question: mainGameBrain.questionNumberArray[index], result: true)
             
+            music.playSound(nameOfMusic: "rightAnswer")
+            
             viewController.modalPresentationStyle = .fullScreen
             present(viewController, animated: false)
             
         } else {
             sender.backgroundColor = UIColor.red
+            music.playSound(nameOfMusic: "wrongAnswer")
             mainGameBrain.forEachArray(labelArray, sender.tag, .red)
         }
         
@@ -375,6 +394,13 @@ class MainGameViewController: UIViewController {
     private func didTapFiftyFiftyButton(_ sender: UIButton) {
         mainGameBrain.promptFifryFifry(buttonsArray)
         mainGameBrain.disableButton(sender, "redCrossFiftyFifty")
+        music.player?.pause()
+        music.playSound(nameOfMusic: "50-50")
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.2) {
+            self.music.playSound(nameOfMusic: "timingAfter")
+            self.music.player?.numberOfLoops = 5
+        }
+     
     }
     
     @objc
@@ -384,6 +410,14 @@ class MainGameViewController: UIViewController {
 
         mainGameBrain.disableButton(sender, "redCrossHallHelp")
 
+        music.player?.pause()
+        music.playSound(nameOfMusic: "Hint Chosen")
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
+            self.music.playSound(nameOfMusic: "timingAfter")
+            self.music.player?.numberOfLoops = 5
+        }
+      
+        
         let viewController = HallHelpViewController()
         viewController.setupHallHelp(with: hallHelp)
         present(viewController, animated: false)
@@ -392,7 +426,14 @@ class MainGameViewController: UIViewController {
     @objc
     private func didTapCallToFriendButton(_ sender: UIButton) {
         let randomValue = mainGameBrain.callToFriend()
-
+        music.player?.pause()
+        music.playSound(nameOfMusic: "Hint Chosen")
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
+            self.music.playSound(nameOfMusic: "timingAfter")
+            self.music.player?.numberOfLoops = 5
+        }
+       
+        
         mainGameBrain.forEachArray(buttonsArray, randomValue, .orange)
         mainGameBrain.forEachArray(labelArray, randomValue, .orange)
         mainGameBrain.disableButton(sender, "redCrossCallToFriend")
