@@ -39,7 +39,7 @@ class MainGameViewController: UIViewController {
         label.font = UIFont.systemFont(ofSize: 24)
         label.textColor = .white
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "question 5"
+        label.text = ""
         label.numberOfLines = 0
         label.textAlignment = .left
         return label
@@ -50,7 +50,7 @@ class MainGameViewController: UIViewController {
         label.font = UIFont.systemFont(ofSize: 24)
         label.textColor = .white
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "1000 RUB"
+        label.text = "0"
         label.numberOfLines = 0
         label.textAlignment = .right
         return label
@@ -61,7 +61,7 @@ class MainGameViewController: UIViewController {
         label.font = UIFont.boldSystemFont(ofSize: 24)
         label.textColor = .green
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "guest"
+        label.text = "Гость"
         label.numberOfLines = 0
         label.textAlignment = .left
         return label
@@ -72,7 +72,7 @@ class MainGameViewController: UIViewController {
         label.font = UIFont.boldSystemFont(ofSize: 24)
         label.textColor = .green
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "0000"
+        label.text = "0 руб."
         label.numberOfLines = 0
         label.textAlignment = .right
         return label
@@ -215,6 +215,20 @@ class MainGameViewController: UIViewController {
         return view
     }()
     
+    private lazy var giveMeMyMoneyButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.layer.cornerRadius = 25
+        button.clipsToBounds = true
+        button.backgroundColor = UIColor.orange
+        button.addTarget(self, action: #selector(didTapGiveMeMyMoneyButton), for: .touchUpInside)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.tintColor = .white
+        button.setTitle("Забрать деньги", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 24)
+        return button
+    }()
+    
     private lazy var promptFiftyFiftyButton: UIButton = {
         let button = UIButton(type: .custom)
         button.setImage(UIImage(named: "fiftyFifty"), for: .normal)
@@ -355,18 +369,24 @@ class MainGameViewController: UIViewController {
     }
     
     func setupMoneyLabel(_ bablo: String) {
-        moneyLabel.text = bablo
+        moneyLabel.text = "\(bablo) руб."
     }
     
     func checkUsedPrompts(with model: UsedPrompts) {
-        promptFiftyFiftyButton.isEnabled = model.fiftyFifty
-        promptFiftyFiftyButton.setImage(UIImage(named: "redCrossFiftyFifty"), for: .normal)
-        
-        promptHallHelpButton.isEnabled = model.fiftyFifty
-        promptHallHelpButton.setImage(UIImage(named: "redCrossHallHelp"), for: .normal)
-        
-        promptCallToFriendButton.isEnabled = model.fiftyFifty
-        promptCallToFriendButton.setImage(UIImage(named: "redCrossCallToFriend"), for: .normal)
+        if model.fiftyFifty == false {
+            promptFiftyFiftyButton.isEnabled = model.fiftyFifty
+            promptFiftyFiftyButton.setImage(UIImage(named: "redCrossFiftyFifty"), for: .normal)
+        }
+
+        if model.hallHelp == false {
+            promptHallHelpButton.isEnabled = model.hallHelp
+            promptHallHelpButton.setImage(UIImage(named: "redCrossHallHelp"), for: .normal)
+        }
+
+        if model.callToFriend == false {
+            promptCallToFriendButton.isEnabled = model.callToFriend
+            promptCallToFriendButton.setImage(UIImage(named: "redCrossCallToFriend"), for: .normal)
+        }
     }
 
     func checkEndTime() {
@@ -375,6 +395,7 @@ class MainGameViewController: UIViewController {
             let viewController = WiningViewController()
             viewController.modalPresentationStyle = .fullScreen
             viewController.setupCheckedAnswer(isChecked: false)
+            viewController.playerAnswer = PlayerAnswer(question: mainGameBrain.safeMoney(mainGameBrain.questionNumber), result: true)
             present(viewController, animated: false)
             checkTimer.invalidate()
         }
@@ -385,6 +406,7 @@ class MainGameViewController: UIViewController {
         let userAnswer = sender.tag
         let userGotItRight = mainGameBrain.checkAnswer(userAnswer: String(userAnswer))
         let index = mainGameBrain.questionNumber
+        guard let loginName = loginLabel.text else { fatalError() }
         
         music.playSound(nameOfMusic: "acceptedAnswer")
         
@@ -400,6 +422,7 @@ class MainGameViewController: UIViewController {
             viewController.playerAnswer = PlayerAnswer(question: mainGameBrain.questionNumberArray[index], result: true)
             viewController.setupCheckedAnswer(isChecked: true)
             viewController.setupPrompts(with: mainGameBrain.usedPrompts)
+            viewController.setupLoginName(loginName)
             music.playSound(nameOfMusic: "rightAnswer")
             
             viewController.modalPresentationStyle = .fullScreen
@@ -471,11 +494,21 @@ class MainGameViewController: UIViewController {
         mainGameBrain.setCallToFriend(false)
         mainGameBrain.disableButton(sender, "redCrossCallToFriend")
     }
+    
+    @objc
+    private func didTapGiveMeMyMoneyButton() {
+        guard let prizeMoney = moneyLabel.text else { fatalError() }
+        guard let loginName = loginLabel.text else { fatalError() }
+        let viewController = ResultViewController()
+        viewController.setupResultViewController(ResultModel(name: loginName, prizeMoney: prizeMoney))
+        viewController.modalPresentationStyle = .fullScreen
+        present(viewController, animated: false)
+    }
 }
 
 private extension MainGameViewController {
     func updateUI() {
-        questionCostLabel.text = mainGameBrain.changeCostText()
+        questionCostLabel.text = "\(mainGameBrain.changeCostText()) руб."
         questionNumberLabel.text = mainGameBrain.changeNumberText()
         
         questionLabel.text = mainGameBrain.getQuestionText()
@@ -541,6 +574,7 @@ private extension MainGameViewController {
         mainStackView.addArrangedSubview(promptStackView)
         
         view.addSubview(mainStackView)
+        view.addSubview(giveMeMyMoneyButton)
     }
     
     func setConstraints() {
@@ -573,6 +607,11 @@ private extension MainGameViewController {
             topView.heightAnchor.constraint(equalToConstant: 90),
             
             bottomView.heightAnchor.constraint(equalToConstant: 80),
+            
+            giveMeMyMoneyButton.centerXAnchor.constraint(equalTo: bottomView.centerXAnchor),
+            giveMeMyMoneyButton.centerYAnchor.constraint(equalTo: bottomView.centerYAnchor),
+            giveMeMyMoneyButton.heightAnchor.constraint(equalToConstant: 50),
+            giveMeMyMoneyButton.widthAnchor.constraint(equalToConstant: 200),
             
             promptStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             promptStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),

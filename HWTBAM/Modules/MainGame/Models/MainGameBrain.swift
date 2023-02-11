@@ -130,11 +130,9 @@ struct MainGameBrain {
         let array2 = Array(repeating: arrayQ[1], count: 7)
         let array3 = Array(repeating: arrayQ[2], count: 6)
         
-        
         let finalArray = correctArray + array1 + array2 + array3
         print(finalArray)
 
-        
         guard let callToFriendIntValue = finalArray.randomElement() else { fatalError() }
         return callToFriendIntValue
     }
@@ -148,7 +146,7 @@ struct MainGameBrain {
     }
     
     mutating func setCallToFriend(_ isUsed: Bool) {
-        usedPrompts.fiftyFifty = isUsed
+        usedPrompts.callToFriend = isUsed
     }
     
     mutating func setupPrompts(with model: UsedPrompts) {
