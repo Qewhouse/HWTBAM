@@ -65,9 +65,10 @@ to be a Millionare ?
     
     private let rulesButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Rules", for: .normal)
-        button.layer.cornerRadius = 10
-        button.backgroundColor = .gray
+        button.setImage(UIImage(named: "rules"), for: .normal)
+        button.layer.cornerRadius = 15
+        button.layer.borderColor = UIColor.systemGray.cgColor
+        button.layer.borderWidth = 2
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -141,7 +142,8 @@ to be a Millionare ?
         labelStackView.addArrangedSubview(subLabel)
         
         buttonStackView.addArrangedSubview(startButton)
-        buttonStackView.addArrangedSubview(rulesButton)
+        //buttonStackView.addArrangedSubview(rulesButton)
+        view.addSubview(rulesButton)
     }
     
     private func playMainMusic() {
@@ -161,6 +163,10 @@ extension StartViewController {
             logoImage.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 60),
             logoImage.heightAnchor.constraint(equalToConstant: 225),
             logoImage.widthAnchor.constraint(equalToConstant: 225),
+            
+            rulesButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            rulesButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -5),
+            rulesButton.widthAnchor.constraint(equalToConstant: 40),
             
             labelStackView.topAnchor.constraint(equalTo: logoImage.bottomAnchor, constant: 20),
             labelStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
