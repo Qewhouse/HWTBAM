@@ -391,7 +391,7 @@ class MainGameViewController: UIViewController {
 
     func checkEndTime() {
         if !timerView.timerFlag {
-            music.playSound(nameOfMusic: "wrongAnswer")
+            music.player?.stop()
             let viewController = WiningViewController()
             viewController.modalPresentationStyle = .fullScreen
             viewController.setupCheckedAnswer(isChecked: false)
