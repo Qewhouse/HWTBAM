@@ -39,6 +39,7 @@
 		542BA83A299507610017C36A /* SharedStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 542BA839299507610017C36A /* SharedStorage.swift */; };
 		542BA83E29952E0C0017C36A /* LoginBrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 542BA83D29952E0C0017C36A /* LoginBrain.swift */; };
 		542BA84029952E2A0017C36A /* RegistrationBrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 542BA83F29952E2A0017C36A /* RegistrationBrain.swift */; };
+		56C488342997D71600432046 /* ShadowModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C488332997D71600432046 /* ShadowModel.swift */; };
 		650901682997A5E600426D9F /* WinBrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650901672997A5E600426D9F /* WinBrain.swift */; };
 		8E0C07CD29924FEB0023F20F /* rightAnswer.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8E0C07C829924FEA0023F20F /* rightAnswer.mp3 */; };
 		8E0C07CE29924FEB0023F20F /* timing.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8E0C07C929924FEB0023F20F /* timing.mp3 */; };
@@ -87,6 +88,7 @@
 		542BA839299507610017C36A /* SharedStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedStorage.swift; sourceTree = "<group>"; };
 		542BA83D29952E0C0017C36A /* LoginBrain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginBrain.swift; sourceTree = "<group>"; };
 		542BA83F29952E2A0017C36A /* RegistrationBrain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationBrain.swift; sourceTree = "<group>"; };
+		56C488332997D71600432046 /* ShadowModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowModel.swift; sourceTree = "<group>"; };
 		650901672997A5E600426D9F /* WinBrain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WinBrain.swift; sourceTree = "<group>"; };
 		8E0C07C829924FEA0023F20F /* rightAnswer.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = rightAnswer.mp3; sourceTree = "<group>"; };
 		8E0C07C929924FEB0023F20F /* timing.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = timing.mp3; sourceTree = "<group>"; };
@@ -182,6 +184,7 @@
 				3784E8422992FF53004F8235 /* AnswerModel.swift */,
 				542BA83F29952E2A0017C36A /* RegistrationBrain.swift */,
 				650901672997A5E600426D9F /* WinBrain.swift */,
+				56C488332997D71600432046 /* ShadowModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -414,6 +417,7 @@
 				8E6486F5299495FF00FD39F4 /* LoginViewController.swift in Sources */,
 				3784E8412992FEEE004F8235 /* PlayerAnswer.swift in Sources */,
 				37BF94AC2996E4E0008AC727 /* MusicModel.swift in Sources */,
+				56C488342997D71600432046 /* ShadowModel.swift in Sources */,
 				542BA8292994F1910017C36A /* HallHelpViewController.swift in Sources */,
 				542BA838299507300017C36A /* KeyValueStorage.swift in Sources */,
 				37DFF9AB298F1858005BA055 /* StartViewController.swift in Sources */,
