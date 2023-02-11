@@ -6,7 +6,7 @@ final class WiningViewController: UIViewController {
     let music = MusicModel()
     
     var playerAnswer: PlayerAnswer?
-    private var answerModel: AnswerModel?
+//    private var answerModel: AnswerModel?
     
     private let backgroundImageView: UIImageView = {
         let image = UIImageView()
@@ -33,6 +33,7 @@ final class WiningViewController: UIViewController {
     let moneyArray = ["100", "200", "300", "500", "1 000", "2 000", "4 000", "8 000", "16 000", "32 000", "64 000", "125 000", "250 000", "500 000", "1 000 000"]
     var index = 0
     var checkedAnswer: Bool?
+    var setupPrompts: UsedPrompts?
     
     var winBrain = WinBrain()
     let mainGameBrain = MainGameBrain()
@@ -51,6 +52,10 @@ final class WiningViewController: UIViewController {
         checkedAnswer = isChecked
     }
     
+    func setupPrompts(with model: UsedPrompts) {
+        setupPrompts = model
+    }
+    
     private func addTaps() {
         let tapScreen = UITapGestureRecognizer(target: self, action: #selector(viewTaps))
         tapScreen.cancelsTouchesInView = false
@@ -64,6 +69,11 @@ final class WiningViewController: UIViewController {
             let viewController = MainGameViewController()
             viewController.mainGameBrain.nextQuestion(upperIndex)
             viewController.setupMoneyLabel(moneyArray[index])
+            
+            guard let setupPrompts = setupPrompts else { fatalError() }
+            viewController.mainGameBrain.setupPrompts(with: setupPrompts)
+            viewController.checkUsedPrompts(with: setupPrompts)
+            
             viewController.modalPresentationStyle = .fullScreen
             music.player?.stop()
             present(viewController, animated: false)

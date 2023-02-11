@@ -341,9 +341,9 @@ class MainGameViewController: UIViewController {
         })
     }
     
-//    override func viewWillDisappear(_ animated: Bool) {
-//        music.player?.pause()
-//    }
+    //    override func viewWillDisappear(_ animated: Bool) {
+    //        music.player?.pause()
+    //    }
     
     override func viewWillAppear(_ animated: Bool) {
         music.playSound(nameOfMusic: "timing")
@@ -358,6 +358,16 @@ class MainGameViewController: UIViewController {
         moneyLabel.text = bablo
     }
     
+    func checkUsedPrompts(with model: UsedPrompts) {
+        promptFiftyFiftyButton.isEnabled = model.fiftyFifty
+        promptFiftyFiftyButton.setImage(UIImage(named: "redCrossFiftyFifty"), for: .normal)
+        
+        promptHallHelpButton.isEnabled = model.fiftyFifty
+        promptHallHelpButton.setImage(UIImage(named: "redCrossHallHelp"), for: .normal)
+        
+        promptCallToFriendButton.isEnabled = model.fiftyFifty
+        promptCallToFriendButton.setImage(UIImage(named: "redCrossCallToFriend"), for: .normal)
+
     func checkEndTime() {
         if !timerView.timerFlag {
             music.playSound(nameOfMusic: "wrongAnswer")
@@ -374,7 +384,7 @@ class MainGameViewController: UIViewController {
         let userAnswer = sender.tag
         let userGotItRight = mainGameBrain.checkAnswer(userAnswer: String(userAnswer))
         let index = mainGameBrain.questionNumber
-       
+        
         music.playSound(nameOfMusic: "acceptedAnswer")
         
         Thread.sleep(forTimeInterval: 5)
@@ -388,7 +398,7 @@ class MainGameViewController: UIViewController {
             viewController.setIndex(mainGameBrain.numberArray[index])
             viewController.playerAnswer = PlayerAnswer(question: mainGameBrain.questionNumberArray[index], result: true)
             viewController.setupCheckedAnswer(isChecked: true)
-            
+            viewController.setupPrompts(with: mainGameBrain.usedPrompts)
             music.playSound(nameOfMusic: "rightAnswer")
             
             viewController.modalPresentationStyle = .fullScreen
@@ -402,12 +412,12 @@ class MainGameViewController: UIViewController {
             mainGameBrain.forEachArray(labelArray, sender.tag, .red)
             let viewController = WiningViewController()
             viewController.modalPresentationStyle = .fullScreen
+            viewController.playerAnswer = PlayerAnswer(question: mainGameBrain.safeMoney(index), result: true)
             viewController.setupCheckedAnswer(isChecked: false)
             
             present(viewController, animated: false)
         }
         
-//        mainGameBrain.nextQuestion()
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { [weak self] in
             self?.updateUI()
         }
@@ -417,29 +427,28 @@ class MainGameViewController: UIViewController {
     private func didTapFiftyFiftyButton(_ sender: UIButton) {
         mainGameBrain.promptFifryFifry(buttonsArray)
         mainGameBrain.disableButton(sender, "redCrossFiftyFifty")
+        mainGameBrain.setfiftyFifty(false)
         music.player?.pause()
         music.playSound(nameOfMusic: "50-50")
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.2) {
             self.music.playSound(nameOfMusic: "timingAfter")
             self.music.player?.numberOfLoops = 5
         }
-     
     }
     
     @objc
     private func didTapHallHelpButton(_ sender: UIButton) {
         mainGameBrain.hallHelpValues()
         guard let hallHelp = mainGameBrain.hallHelp else { fatalError() }
-
         mainGameBrain.disableButton(sender, "redCrossHallHelp")
-
+        mainGameBrain.setHallHelp(false)
         music.player?.pause()
         music.playSound(nameOfMusic: "Hint Chosen")
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
             self.music.playSound(nameOfMusic: "timingAfter")
             self.music.player?.numberOfLoops = 5
         }
-      
+        
         
         let viewController = HallHelpViewController()
         viewController.setupHallHelp(with: hallHelp)
@@ -455,10 +464,10 @@ class MainGameViewController: UIViewController {
             self.music.playSound(nameOfMusic: "timingAfter")
             self.music.player?.numberOfLoops = 5
         }
-       
         
         mainGameBrain.forEachArray(buttonsArray, randomValue, .orange)
         mainGameBrain.forEachArray(labelArray, randomValue, .orange)
+        mainGameBrain.setCallToFriend(false)
         mainGameBrain.disableButton(sender, "redCrossCallToFriend")
     }
 }

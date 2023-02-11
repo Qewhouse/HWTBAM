@@ -26,6 +26,7 @@
 		37DFF9AB298F1858005BA055 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DFF9AA298F1858005BA055 /* StartViewController.swift */; };
 		37DFF9B0298F1859005BA055 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37DFF9AF298F1859005BA055 /* Assets.xcassets */; };
 		37DFF9B3298F1859005BA055 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 37DFF9B1298F1859005BA055 /* LaunchScreen.storyboard */; };
+		5402AC792997B23500FCE9A3 /* UsedPrompts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5402AC782997B23500FCE9A3 /* UsedPrompts.swift */; };
 		542BA8212994EDDF0017C36A /* MainGameBrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 542BA8202994EDDF0017C36A /* MainGameBrain.swift */; };
 		542BA8232994EDEB0017C36A /* HallHelpModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 542BA8222994EDEB0017C36A /* HallHelpModel.swift */; };
 		542BA8252994EE000017C36A /* QuestionMulti.swift in Sources */ = {isa = PBXBuildFile; fileRef = 542BA8242994EE000017C36A /* QuestionMulti.swift */; };
@@ -73,6 +74,7 @@
 		37DFF9AF298F1859005BA055 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		37DFF9B2298F1859005BA055 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		37DFF9B4298F1859005BA055 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5402AC782997B23500FCE9A3 /* UsedPrompts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsedPrompts.swift; sourceTree = "<group>"; };
 		542BA8202994EDDF0017C36A /* MainGameBrain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainGameBrain.swift; sourceTree = "<group>"; };
 		542BA8222994EDEB0017C36A /* HallHelpModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HallHelpModel.swift; sourceTree = "<group>"; };
 		542BA8242994EE000017C36A /* QuestionMulti.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionMulti.swift; sourceTree = "<group>"; };
@@ -213,6 +215,7 @@
 				542BA8222994EDEB0017C36A /* HallHelpModel.swift */,
 				542BA8242994EE000017C36A /* QuestionMulti.swift */,
 				37BF94AB2996E4E0008AC727 /* MusicModel.swift */,
+				5402AC782997B23500FCE9A3 /* UsedPrompts.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -427,6 +430,7 @@
 				37DFF9A9298F1858005BA055 /* SceneDelegate.swift in Sources */,
 				542BA8232994EDEB0017C36A /* HallHelpModel.swift in Sources */,
 				3784E83B299195E8004F8235 /* Rules.swift in Sources */,
+				5402AC792997B23500FCE9A3 /* UsedPrompts.swift in Sources */,
 				3784E83F2992FAE4004F8235 /* Theme.swift in Sources */,
 				542BA82B2995010E0017C36A /* RegistrationViewController.swift in Sources */,
 				3784E8432992FF53004F8235 /* AnswerModel.swift in Sources */,
