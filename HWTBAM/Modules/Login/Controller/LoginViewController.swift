@@ -153,7 +153,7 @@ private extension LoginViewController {
                 music.playSound(nameOfMusic: "Button Push")
                 present(viewController, animated: true)
             } else {
-                    wrongLogPas()
+            wrongLogPas()
             }
         } else {
             wrongLogPas()

@@ -416,35 +416,39 @@ class MainGameViewController: UIViewController {
         if userGotItRight {
             
             sender.backgroundColor = UIColor.green
-            
             mainGameBrain.forEachArray(labelArray, sender.tag, .green)
-            let viewController = WiningViewController()
-            viewController.setIndex(mainGameBrain.numberArray[index])
-            viewController.playerAnswer = PlayerAnswer(question: mainGameBrain.questionNumberArray[index], result: true)
-            viewController.setupCheckedAnswer(isChecked: true)
-            viewController.setupPrompts(with: mainGameBrain.usedPrompts)
-            viewController.setupLoginName(loginName)
-            music.player?.stop()
             
-            viewController.modalPresentationStyle = .fullScreen
-            
-            present(viewController, animated: false)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
+                
+                let viewController = WiningViewController()
+                viewController.setIndex(self?.mainGameBrain.numberArray[index] ?? Int())
+                viewController.playerAnswer = PlayerAnswer(question: self?.mainGameBrain.questionNumberArray[index] ?? Int(), result: true)
+                viewController.setupCheckedAnswer(isChecked: true)
+                viewController.setupPrompts(with: self?.mainGameBrain.usedPrompts ?? UsedPrompts())
+                viewController.setupLoginName(loginName)
+                self?.music.player?.stop()
+                viewController.modalPresentationStyle = .fullScreen
+                
+                self?.present(viewController, animated: false)
+            }
             
         } else {
             sender.backgroundColor = UIColor.red
-            
-            music.player?.stop()
             mainGameBrain.forEachArray(labelArray, sender.tag, .red)
-            let viewController = WiningViewController()
-            viewController.modalPresentationStyle = .fullScreen
-            viewController.playerAnswer = PlayerAnswer(question: mainGameBrain.safeMoney(index).safeNumber, result: true)
-            viewController.setupSafeMoney(with: mainGameBrain.safeMoney(index))
-            viewController.setupCheckedAnswer(isChecked: false)
             
-            present(viewController, animated: false)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
+                self?.music.player?.stop()
+                let viewController = WiningViewController()
+                viewController.modalPresentationStyle = .fullScreen
+                viewController.playerAnswer = PlayerAnswer(question: self?.mainGameBrain.safeMoney(index).safeNumber ?? Int(), result: true)
+                viewController.setupSafeMoney(with: self?.mainGameBrain.safeMoney(index) ?? LoseViewModel(safeNumber: Int(), safeMoney: String()))
+                viewController.setupCheckedAnswer(isChecked: false)
+                
+                self?.present(viewController, animated: false)
+            }
         }
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { [weak self] in
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
             self?.updateUI()
         }
     }
