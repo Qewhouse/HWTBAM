@@ -12,6 +12,7 @@ class StartViewController: UIViewController {
     
     var player: AVAudioPlayer?
     let music = MusicModel()
+    let shadow = ShadowButton()
     
     private let logoImage: UIImageView = {
         let imageView = UIImageView()
@@ -144,6 +145,9 @@ to be a Millionare ?
         buttonStackView.addArrangedSubview(startButton)
         //buttonStackView.addArrangedSubview(rulesButton)
         view.addSubview(rulesButton)
+        
+        shadow.setShadowButton(startButton)
+        shadow.setShadowButton(rulesButton)
     }
     
     private func playMainMusic() {
