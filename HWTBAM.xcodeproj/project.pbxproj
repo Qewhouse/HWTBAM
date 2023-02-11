@@ -29,6 +29,7 @@
 		5402AC792997B23500FCE9A3 /* UsedPrompts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5402AC782997B23500FCE9A3 /* UsedPrompts.swift */; };
 		5402AC7C2997D78700FCE9A3 /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5402AC7B2997D78700FCE9A3 /* ResultViewController.swift */; };
 		5402AC802997E92300FCE9A3 /* ResultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5402AC7F2997E92300FCE9A3 /* ResultModel.swift */; };
+		5402AC822997F73100FCE9A3 /* LoseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5402AC812997F73100FCE9A3 /* LoseViewModel.swift */; };
 		542BA8212994EDDF0017C36A /* MainGameBrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 542BA8202994EDDF0017C36A /* MainGameBrain.swift */; };
 		542BA8232994EDEB0017C36A /* HallHelpModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 542BA8222994EDEB0017C36A /* HallHelpModel.swift */; };
 		542BA8252994EE000017C36A /* QuestionMulti.swift in Sources */ = {isa = PBXBuildFile; fileRef = 542BA8242994EE000017C36A /* QuestionMulti.swift */; };
@@ -80,6 +81,7 @@
 		5402AC782997B23500FCE9A3 /* UsedPrompts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsedPrompts.swift; sourceTree = "<group>"; };
 		5402AC7B2997D78700FCE9A3 /* ResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
 		5402AC7F2997E92300FCE9A3 /* ResultModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultModel.swift; sourceTree = "<group>"; };
+		5402AC812997F73100FCE9A3 /* LoseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoseViewModel.swift; sourceTree = "<group>"; };
 		542BA8202994EDDF0017C36A /* MainGameBrain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainGameBrain.swift; sourceTree = "<group>"; };
 		542BA8222994EDEB0017C36A /* HallHelpModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HallHelpModel.swift; sourceTree = "<group>"; };
 		542BA8242994EE000017C36A /* QuestionMulti.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionMulti.swift; sourceTree = "<group>"; };
@@ -248,6 +250,7 @@
 				542BA8242994EE000017C36A /* QuestionMulti.swift */,
 				37BF94AB2996E4E0008AC727 /* MusicModel.swift */,
 				5402AC782997B23500FCE9A3 /* UsedPrompts.swift */,
+				5402AC812997F73100FCE9A3 /* LoseViewModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -447,6 +450,7 @@
 				8E6486F5299495FF00FD39F4 /* LoginViewController.swift in Sources */,
 				3784E8412992FEEE004F8235 /* PlayerAnswer.swift in Sources */,
 				37BF94AC2996E4E0008AC727 /* MusicModel.swift in Sources */,
+				5402AC822997F73100FCE9A3 /* LoseViewModel.swift in Sources */,
 				56C488342997D71600432046 /* ShadowModel.swift in Sources */,
 				542BA8292994F1910017C36A /* HallHelpViewController.swift in Sources */,
 				542BA838299507300017C36A /* KeyValueStorage.swift in Sources */,

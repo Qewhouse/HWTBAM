@@ -35,6 +35,7 @@ final class WiningViewController: UIViewController {
     var checkedAnswer: Bool?
     var setupPrompts: UsedPrompts?
     var loginName = ""
+    var loseViewModel: LoseViewModel?
     
     var winBrain = WinBrain()
     let mainGameBrain = MainGameBrain()
@@ -60,6 +61,10 @@ final class WiningViewController: UIViewController {
     
     func setupLoginName(_ name: String) {
         loginName = name
+    }
+    
+    func setupSafeMoney(with model: LoseViewModel)  {
+        loseViewModel = model
     }
     
     func onMusic() {
@@ -93,7 +98,9 @@ final class WiningViewController: UIViewController {
             music.player?.stop()
             present(viewController, animated: false)
         } else if checkedAnswer == false {
+            guard let viewModel = loseViewModel else { fatalError() }
             let viewController = LoseScreenViewController()
+            viewController.setupLoseViewController(with: viewModel)
             viewController.modalPresentationStyle = .fullScreen
             music.player?.stop()
             present(viewController, animated: false)

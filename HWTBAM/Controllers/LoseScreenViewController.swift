@@ -6,7 +6,6 @@
 //
 
 import UIKit
-//import SwiftUI
 
 class LoseScreenViewController: UIViewController {
     
@@ -38,7 +37,7 @@ class LoseScreenViewController: UIViewController {
     
     private let subLabel: UILabel = {
         let label = UILabel()
-        label.text = "Lose"
+        label.text = "0"
         label.textColor = .white
         label.numberOfLines = 0
         label.textAlignment = .center
@@ -49,7 +48,7 @@ class LoseScreenViewController: UIViewController {
     
     private let playAgainButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Play Again", for: .normal)
+        button.setTitle("Играть снова", for: .normal)
         button.layer.cornerRadius = 10
         button.backgroundColor = .gray
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -79,16 +78,12 @@ class LoseScreenViewController: UIViewController {
         buttonTapped()
     }
     
-//    func getSafeSum() {
-//        subLabel.text = "Ваш выигрыш составил \(winBrain.getSafeSum(cellNumber: questionNumber)) рублей"
-//    }
-    
     func buttonTapped() {
         playAgainButton.addTarget(self, action: #selector(playAgainButtonTapped), for: .touchUpInside)
     }
     
-    func setupLoseViewController(_ value: Int) {
-        subLabel.text = String(value)
+    func setupLoseViewController(with model: LoseViewModel) {
+        subLabel.text = "Ваш выигрыш составил: \(model.safeMoney) руб."
     }
     
     @objc func playAgainButtonTapped() {
@@ -105,8 +100,6 @@ class LoseScreenViewController: UIViewController {
         
         labelStackView.addArrangedSubview(mainLabel)
         labelStackView.addArrangedSubview(subLabel)
-        
-//        getSafeSum()
     }
     
     private func setConstraints() {
