@@ -12,6 +12,8 @@ class MainGameViewController: UIViewController {
     
     let music = MusicModel()
     
+    private var checkTimer = Timer()
+    
     private let backgroundImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "background")
@@ -19,12 +21,7 @@ class MainGameViewController: UIViewController {
         return imageView
     }()
     
-    private let logoImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = UIImage(named: "millionaireImage")
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        return imageView
-    }()
+    private let timerView = TimerView()
     
     private let questionLabel: UILabel = {
         let label = UILabel()
@@ -338,6 +335,10 @@ class MainGameViewController: UIViewController {
         updateUI()
         music.playSound(nameOfMusic: "timing")
         music.player?.numberOfLoops = 5
+        timerView.timerStart()
+        checkTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { _ in
+            self.checkEndTime()
+        })
     }
     
 //    override func viewWillDisappear(_ animated: Bool) {
@@ -357,6 +358,17 @@ class MainGameViewController: UIViewController {
         moneyLabel.text = bablo
     }
     
+    func checkEndTime() {
+        if !timerView.timerFlag {
+            music.playSound(nameOfMusic: "wrongAnswer")
+            let viewController = WiningViewController()
+            viewController.modalPresentationStyle = .fullScreen
+            viewController.setupCheckedAnswer(isChecked: false)
+            present(viewController, animated: false)
+            checkTimer.invalidate()
+        }
+    }
+    
     @objc
     private func didTapAnswerButton(_ sender: UIButton) {
         let userAnswer = sender.tag
@@ -365,11 +377,13 @@ class MainGameViewController: UIViewController {
        
         music.playSound(nameOfMusic: "acceptedAnswer")
         
+        Thread.sleep(forTimeInterval: 5)
+        
         if userGotItRight {
             
             sender.backgroundColor = UIColor.green
-            mainGameBrain.forEachArray(labelArray, sender.tag, .green)
             
+            mainGameBrain.forEachArray(labelArray, sender.tag, .green)
             let viewController = WiningViewController()
             viewController.setIndex(mainGameBrain.numberArray[index])
             viewController.playerAnswer = PlayerAnswer(question: mainGameBrain.questionNumberArray[index], result: true)
@@ -378,16 +392,18 @@ class MainGameViewController: UIViewController {
             music.playSound(nameOfMusic: "rightAnswer")
             
             viewController.modalPresentationStyle = .fullScreen
+            
             present(viewController, animated: false)
             
         } else {
             sender.backgroundColor = UIColor.red
+            
             music.playSound(nameOfMusic: "wrongAnswer")
             mainGameBrain.forEachArray(labelArray, sender.tag, .red)
-            
             let viewController = WiningViewController()
             viewController.modalPresentationStyle = .fullScreen
             viewController.setupCheckedAnswer(isChecked: false)
+            
             present(viewController, animated: false)
         }
         
@@ -480,7 +496,7 @@ private extension MainGameViewController {
     func addSubviews() {
         view.addSubview(backgroundImageView)
         
-        topStackView.addArrangedSubview(logoImageView)
+        topStackView.addArrangedSubview(timerView)
         topStackView.addArrangedSubview(questionLabel)
         
         numberCostStackView.addArrangedSubview(questionNumberLabel)
@@ -529,8 +545,8 @@ private extension MainGameViewController {
             mainStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             mainStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             
-            logoImageView.widthAnchor.constraint(equalToConstant: 87),
-            logoImageView.heightAnchor.constraint(equalToConstant: 87),
+            timerView.widthAnchor.constraint(equalToConstant: 87),
+            timerView.heightAnchor.constraint(equalToConstant: 87),
             
             topStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 5),
             topStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -5),
