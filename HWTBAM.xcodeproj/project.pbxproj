@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		168B929C2997B65C00FC4748 /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 168B929B2997B65C00FC4748 /* TimerView.swift */; };
 		2C472EC62994336100A05091 /* LoseScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C472EC52994336100A05091 /* LoseScreenViewController.swift */; };
 		3784E83B299195E8004F8235 /* Rules.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3784E83A299195E8004F8235 /* Rules.swift */; };
 		3784E83D2992EFCD004F8235 /* WinModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3784E83C2992EFCD004F8235 /* WinModel.swift */; };
@@ -51,6 +52,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		168B929B2997B65C00FC4748 /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
 		2C472EC52994336100A05091 /* LoseScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoseScreenViewController.swift; sourceTree = "<group>"; };
 		3784E83A299195E8004F8235 /* Rules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rules.swift; sourceTree = "<group>"; };
 		3784E83C2992EFCD004F8235 /* WinModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WinModel.swift; sourceTree = "<group>"; };
@@ -134,6 +136,7 @@
 				542BA8342995070A0017C36A /* Services */,
 				37DFF9BA298F1948005BA055 /* App */,
 				37DFF9BB298F1953005BA055 /* Resources */,
+				168B929B2997B65C00FC4748 /* TimerView.swift */,
 			);
 			path = HWTBAM;
 			sourceTree = "<group>";
@@ -429,6 +432,7 @@
 				3784E8432992FF53004F8235 /* AnswerModel.swift in Sources */,
 				542BA8252994EE000017C36A /* QuestionMulti.swift in Sources */,
 				3784E83D2992EFCD004F8235 /* WinModel.swift in Sources */,
+				168B929C2997B65C00FC4748 /* TimerView.swift in Sources */,
 				542BA82F2995069D0017C36A /* UserStruct.swift in Sources */,
 				542BA84029952E2A0017C36A /* RegistrationBrain.swift in Sources */,
 				2C472EC62994336100A05091 /* LoseScreenViewController.swift in Sources */,
