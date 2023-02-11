@@ -30,6 +30,7 @@
 		5402AC7C2997D78700FCE9A3 /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5402AC7B2997D78700FCE9A3 /* ResultViewController.swift */; };
 		5402AC802997E92300FCE9A3 /* ResultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5402AC7F2997E92300FCE9A3 /* ResultModel.swift */; };
 		5402AC822997F73100FCE9A3 /* LoseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5402AC812997F73100FCE9A3 /* LoseViewModel.swift */; };
+		5402AC84299823D100FCE9A3 /* GetRandomInt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5402AC83299823D100FCE9A3 /* GetRandomInt.swift */; };
 		542BA8212994EDDF0017C36A /* MainGameBrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 542BA8202994EDDF0017C36A /* MainGameBrain.swift */; };
 		542BA8232994EDEB0017C36A /* HallHelpModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 542BA8222994EDEB0017C36A /* HallHelpModel.swift */; };
 		542BA8252994EE000017C36A /* QuestionMulti.swift in Sources */ = {isa = PBXBuildFile; fileRef = 542BA8242994EE000017C36A /* QuestionMulti.swift */; };
@@ -82,6 +83,7 @@
 		5402AC7B2997D78700FCE9A3 /* ResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
 		5402AC7F2997E92300FCE9A3 /* ResultModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultModel.swift; sourceTree = "<group>"; };
 		5402AC812997F73100FCE9A3 /* LoseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoseViewModel.swift; sourceTree = "<group>"; };
+		5402AC83299823D100FCE9A3 /* GetRandomInt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetRandomInt.swift; sourceTree = "<group>"; };
 		542BA8202994EDDF0017C36A /* MainGameBrain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainGameBrain.swift; sourceTree = "<group>"; };
 		542BA8222994EDEB0017C36A /* HallHelpModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HallHelpModel.swift; sourceTree = "<group>"; };
 		542BA8242994EE000017C36A /* QuestionMulti.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionMulti.swift; sourceTree = "<group>"; };
@@ -251,6 +253,7 @@
 				37BF94AB2996E4E0008AC727 /* MusicModel.swift */,
 				5402AC782997B23500FCE9A3 /* UsedPrompts.swift */,
 				5402AC812997F73100FCE9A3 /* LoseViewModel.swift */,
+				5402AC83299823D100FCE9A3 /* GetRandomInt.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -480,6 +483,7 @@
 				5402AC802997E92300FCE9A3 /* ResultModel.swift in Sources */,
 				5402AC7C2997D78700FCE9A3 /* ResultViewController.swift in Sources */,
 				2C472EC62994336100A05091 /* LoseScreenViewController.swift in Sources */,
+				5402AC84299823D100FCE9A3 /* GetRandomInt.swift in Sources */,
 				8E0C07D7299291DF0023F20F /* WiningViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
