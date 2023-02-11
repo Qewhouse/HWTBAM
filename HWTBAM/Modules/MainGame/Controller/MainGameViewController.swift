@@ -391,11 +391,12 @@ class MainGameViewController: UIViewController {
 
     func checkEndTime() {
         if !timerView.timerFlag {
-            music.playSound(nameOfMusic: "wrongAnswer")
+//            music.playSound(nameOfMusic: "wrongAnswer")
+            music.player?.stop()
             let viewController = WiningViewController()
             viewController.modalPresentationStyle = .fullScreen
             viewController.setupCheckedAnswer(isChecked: false)
-            viewController.playerAnswer = PlayerAnswer(question: mainGameBrain.safeMoney(mainGameBrain.questionNumber), result: true)
+            viewController.playerAnswer = PlayerAnswer(question: mainGameBrain.safeMoney(mainGameBrain.questionNumber).safeNumber, result: true)
             present(viewController, animated: false)
             checkTimer.invalidate()
         }
@@ -436,7 +437,8 @@ class MainGameViewController: UIViewController {
             mainGameBrain.forEachArray(labelArray, sender.tag, .red)
             let viewController = WiningViewController()
             viewController.modalPresentationStyle = .fullScreen
-            viewController.playerAnswer = PlayerAnswer(question: mainGameBrain.safeMoney(index), result: true)
+            viewController.playerAnswer = PlayerAnswer(question: mainGameBrain.safeMoney(index).safeNumber, result: true)
+            viewController.setupSafeMoney(with: mainGameBrain.safeMoney(index))
             viewController.setupCheckedAnswer(isChecked: false)
             
             present(viewController, animated: false)
@@ -497,6 +499,7 @@ class MainGameViewController: UIViewController {
     
     @objc
     private func didTapGiveMeMyMoneyButton() {
+        music.player?.stop()
         guard let prizeMoney = moneyLabel.text else { fatalError() }
         guard let loginName = loginLabel.text else { fatalError() }
         let viewController = ResultViewController()

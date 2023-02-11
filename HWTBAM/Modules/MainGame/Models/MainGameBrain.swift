@@ -153,22 +153,29 @@ struct MainGameBrain {
         usedPrompts = model
     }
     
-    func safeMoney(_ number: Int) -> Int {
-        var intValue = 0
+    func safeMoney(_ number: Int) -> LoseViewModel {
+        var safeNumber = 0
+        var safeMoney = ""
         
         switch number {
         case 0..<5:
-            intValue = 15
+            safeNumber = 15
+            safeMoney = "0"
         case 5..<10:
-            intValue = 10
+            safeNumber = 10
+            safeMoney = "1000"
         case 10..<15:
-            intValue = 5
+            safeNumber = 5
+            safeMoney = "32 000"
         case 15:
-            intValue = 0
+            safeNumber = 0
+            safeMoney = "1 000 000"
         default:
             print("default value")
         }
-        return intValue
+        
+        let loseViewModel = LoseViewModel(safeNumber: safeNumber, safeMoney: safeMoney)
+        return loseViewModel
     }
     
     func forEachArray<T: UIView>(_ array: [T], _ value: Int, _ color: UIColor) {
