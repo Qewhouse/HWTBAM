@@ -423,7 +423,7 @@ class MainGameViewController: UIViewController {
             viewController.setupCheckedAnswer(isChecked: true)
             viewController.setupPrompts(with: mainGameBrain.usedPrompts)
             viewController.setupLoginName(loginName)
-            music.playSound(nameOfMusic: "rightAnswer")
+            music.player?.stop()
             
             viewController.modalPresentationStyle = .fullScreen
             
@@ -432,7 +432,7 @@ class MainGameViewController: UIViewController {
         } else {
             sender.backgroundColor = UIColor.red
             
-            music.playSound(nameOfMusic: "wrongAnswer")
+            music.player?.stop()
             mainGameBrain.forEachArray(labelArray, sender.tag, .red)
             let viewController = WiningViewController()
             viewController.modalPresentationStyle = .fullScreen
@@ -591,6 +591,7 @@ private extension MainGameViewController {
             
             timerView.widthAnchor.constraint(equalToConstant: 87),
             timerView.heightAnchor.constraint(equalToConstant: 87),
+            questionLabel.leadingAnchor.constraint(equalTo: timerView.trailingAnchor, constant: 10),
             
             topStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 5),
             topStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -5),

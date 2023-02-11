@@ -93,7 +93,6 @@ class RegistrationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViewController()
-        music.playSound(nameOfMusic: "Rules Music")
     }
     
     @objc
@@ -101,7 +100,8 @@ class RegistrationViewController: UIViewController {
         if nameRegistrationTextField.text != "" && passwordRegistrationTextField.text != "" {
             setStorage()
             music.playSound(nameOfMusic: "Button Push")
-            dismiss(animated: false)
+            Thread.sleep(forTimeInterval: 0.3)
+            dismiss(animated: true)
         } else {
             nameLoginLabel.text = "заполните логин и пароль"
             nameLoginLabel.textColor = .red

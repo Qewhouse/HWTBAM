@@ -2,11 +2,11 @@ import UIKit
 import AVFoundation
 
 final class WiningViewController: UIViewController {
-
+    
     let music = MusicModel()
     
     var playerAnswer: PlayerAnswer?
-//    private var answerModel: AnswerModel?
+    //    private var answerModel: AnswerModel?
     
     private let backgroundImageView: UIImageView = {
         let image = UIImageView()
@@ -43,6 +43,7 @@ final class WiningViewController: UIViewController {
         super.viewDidLoad()
         setupLayout()
         setupConstraint()
+        onMusic()
     }
     
     func setIndex(_ value: Int) {
@@ -61,6 +62,14 @@ final class WiningViewController: UIViewController {
         loginName = name
     }
     
+    func onMusic() {
+        if checkedAnswer == true {
+            music.playSound(nameOfMusic: "rightAnswer")
+        } else {
+            music.playSound(nameOfMusic: "wrongAnswer")
+        }
+    }
+    
     private func addTaps() {
         let tapScreen = UITapGestureRecognizer(target: self, action: #selector(viewTaps))
         tapScreen.cancelsTouchesInView = false
@@ -70,7 +79,7 @@ final class WiningViewController: UIViewController {
     @objc private func viewTaps() {
         if checkedAnswer == true {
             let upperIndex = index + 1
-
+            
             let viewController = MainGameViewController()
             viewController.mainGameBrain.nextQuestion(upperIndex)
             viewController.setupMoneyLabel(moneyArray[index])
@@ -121,17 +130,17 @@ extension WiningViewController: UITableViewDelegate, UITableViewDataSource {
 extension WiningViewController {
     func setupConstraint() {
         NSLayoutConstraint.activate([
-
+            
             backgroundImageView.topAnchor.constraint(equalTo: view.topAnchor),
             backgroundImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             backgroundImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             backgroundImageView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-
+            
             headerImage.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             headerImage.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             headerImage.widthAnchor.constraint(equalToConstant: 130),
             headerImage.heightAnchor.constraint(equalToConstant: 130),
-
+            
             moneyList.topAnchor.constraint(equalTo: headerImage.bottomAnchor, constant: 16),
             moneyList.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             moneyList.trailingAnchor.constraint(equalTo: view.trailingAnchor),
