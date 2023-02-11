@@ -32,6 +32,9 @@ struct MainGameBrain {
     
     let questionNumberArray = [14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0]
     let numberArray = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+    var checkedAnswer: Bool?
+    let moneyLabelArray = ["100", "200", "300", "500", "1 000", "2 000", "4 000", "8 000", "16 000", "32 000", "64 000", "125 000", "250 000", "500 000", "1 000 000"]
+    let numberLabelArray = ["Вопрос 1", "Вопрос 2", "Вопрос 3", "Вопрос 4", "Вопрос 5", "Вопрос 6", "Вопрос 7", "Вопрос 8", "Вопрос 9", "Вопрос 10", "Вопрос 11", "Вопрос 12", "Вопрос 13", "Вопрос 14", "Вопрос 15"]
     
     func getQuestionText() -> String {
         return quiz[questionNumber].text
@@ -46,11 +49,19 @@ struct MainGameBrain {
 //        }
 //    }
     
+    mutating func changeCostText() -> String {
+        return moneyLabelArray[questionNumber]
+    }
+    
+    mutating func changeNumberText() -> String {
+        return numberLabelArray[questionNumber]
+    }
+    
     mutating func nextQuestion(_ intValue: Int) {
            questionNumber = intValue
    }
     
-    func checkAnswer(userAnswer: String) -> Bool {
+    mutating func checkAnswer(userAnswer: String) -> Bool {
         if userAnswer == quiz[questionNumber].correctAnswer {
             return true
         } else {

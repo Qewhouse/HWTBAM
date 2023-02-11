@@ -44,8 +44,8 @@ final class WiningTableViewCell: UITableViewCell {
     }
     
     func configure(model: WinModel, currentQuestion: Bool) {
-        prizeLabel.text = model.prize.rawValue
-        questionLabel.text = model.number.rawValue
+        prizeLabel.text = model.prize
+        questionLabel.text = model.number
         if currentQuestion {
             backgroundColor = .systemGreen
             prizeLabel.font = .boldSystemFont(ofSize: 25)

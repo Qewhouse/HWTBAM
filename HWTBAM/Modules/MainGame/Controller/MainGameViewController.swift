@@ -316,6 +316,7 @@ class MainGameViewController: UIViewController {
     }()
     
     var mainGameBrain = MainGameBrain()
+    var winBrain = WinBrain()
     
     private lazy var labelArray: [UILabel] = [letterALabel,
                                               letterBLabel,
@@ -356,6 +357,7 @@ class MainGameViewController: UIViewController {
             let viewController = WiningViewController()
             viewController.setIndex(mainGameBrain.numberArray[index])
             viewController.playerAnswer = PlayerAnswer(question: mainGameBrain.questionNumberArray[index], result: true)
+            viewController.setupCheckedAnswer(isChecked: true)
             
             viewController.modalPresentationStyle = .fullScreen
             present(viewController, animated: false)
@@ -364,8 +366,9 @@ class MainGameViewController: UIViewController {
             sender.backgroundColor = UIColor.red
             mainGameBrain.forEachArray(labelArray, sender.tag, .red)
             
-            let viewController = LoseScreenViewController()
+            let viewController = WiningViewController()
             viewController.modalPresentationStyle = .fullScreen
+            viewController.setupCheckedAnswer(isChecked: false)
             present(viewController, animated: false)
         }
         
@@ -405,6 +408,9 @@ class MainGameViewController: UIViewController {
 
 private extension MainGameViewController {
     func updateUI() {
+        questionCostLabel.text = mainGameBrain.changeCostText()
+        questionNumberLabel.text = mainGameBrain.changeNumberText()
+        
         questionLabel.text = mainGameBrain.getQuestionText()
         
         letterALabel.backgroundColor = UIColor.blue
