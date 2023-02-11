@@ -1,6 +1,9 @@
 import UIKit
+import AVFoundation
 
 final class WiningViewController: UIViewController {
+
+    let music = MusicModel()
     
     var playerAnswer: PlayerAnswer?
     private var answerModel: AnswerModel?
@@ -57,14 +60,17 @@ final class WiningViewController: UIViewController {
     @objc private func viewTaps() {
         if checkedAnswer == true {
             let upperIndex = index + 1
+
             let viewController = MainGameViewController()
             viewController.mainGameBrain.nextQuestion(upperIndex)
             viewController.setupMoneyLabel(moneyArray[index])
             viewController.modalPresentationStyle = .fullScreen
+            music.player?.stop()
             present(viewController, animated: false)
         } else if checkedAnswer == false {
             let viewController = LoseScreenViewController()
             viewController.modalPresentationStyle = .fullScreen
+            music.player?.stop()
             present(viewController, animated: false)
         }
     }

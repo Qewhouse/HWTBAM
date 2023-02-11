@@ -1,6 +1,9 @@
 import UIKit
+import AVFoundation
 
 class RulesViewController: UIViewController {
+    
+    let music = MusicModel()
 
     //MARK: - UI Elements
     var scrollView: UIScrollView = {
@@ -60,6 +63,7 @@ class RulesViewController: UIViewController {
     //MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        music.playSound(nameOfMusic: "Rules Music")
         setLayout()
         setConstraint()
     }
@@ -76,6 +80,7 @@ class RulesViewController: UIViewController {
     }
     
     @objc func clickReturn() {
+        music.playSound(nameOfMusic: "Button Push")
         self.dismiss(animated: true)
     }
 }

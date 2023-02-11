@@ -1,6 +1,10 @@
 import UIKit
+import AVFoundation
 
 class LoginViewController: UIViewController {
+    
+    var player: AVAudioPlayer?
+    let music = MusicModel()
 
     private let backgroundImageView: UIImageView = {
         let image = UIImageView()
@@ -102,6 +106,7 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViewController()
+        music.playSound(nameOfMusic: "Rules Music")
     }
     
     @objc
@@ -111,6 +116,7 @@ class LoginViewController: UIViewController {
     
     @objc
     private func didTapRegestrationButton() {
+        music.playSound(nameOfMusic: "Button Push")
         let rulesVC = RegistrationViewController()
         rulesVC.modalPresentationStyle = .fullScreen
         present(rulesVC, animated: true)
@@ -118,6 +124,7 @@ class LoginViewController: UIViewController {
     
     @objc
     private func didTapGuestButton() {
+        music.playSound(nameOfMusic: "Button Push")
         let viewController = MainGameViewController()
         viewController.setupLoginLabel("Гость")
         viewController.modalPresentationStyle = .fullScreen
@@ -142,6 +149,7 @@ private extension LoginViewController {
                 let viewController = MainGameViewController()
                 viewController.modalPresentationStyle = .fullScreen
                 viewController.setupLoginLabel(user.loginName)
+                music.playSound(nameOfMusic: "Button Push")
                 present(viewController, animated: true)
             } else {
                     wrongLogPas()
@@ -163,7 +171,6 @@ private extension LoginViewController {
     }
     
     func addSubviews() {
-        mainStackView.addArrangedSubview(logoImageView)
         mainStackView.addArrangedSubview(nameLoginLabel)
         mainStackView.addArrangedSubview(nameLoginTextField)
         mainStackView.addArrangedSubview(passwordLoginLabel)
@@ -173,20 +180,26 @@ private extension LoginViewController {
         mainStackView.addArrangedSubview(guestButton)
 
         view.addSubview(backgroundImageView)
+        view.addSubview(logoImageView)
         view.addSubview(mainStackView)
     }
     
     func setConstraint() {
         NSLayoutConstraint.activate([
+            logoImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
+            logoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            logoImageView.heightAnchor.constraint(equalToConstant: 200),
+            logoImageView.widthAnchor.constraint(equalToConstant: 200),
+
             backgroundImageView.topAnchor.constraint(equalTo: view.topAnchor),
             backgroundImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             backgroundImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             backgroundImageView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             
-            mainStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
-            mainStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
-            mainStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10),
-            mainStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10)
+            mainStackView.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: 20),
+            mainStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            mainStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -150),
+            mainStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16)
         ])
     }
 }

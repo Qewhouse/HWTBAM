@@ -6,8 +6,12 @@
 //
 
 import UIKit
+import AVFoundation
 
 class StartViewController: UIViewController {
+    
+    var player: AVAudioPlayer?
+    let music = MusicModel()
     
     private let logoImage: UIImageView = {
         let imageView = UIImageView()
@@ -67,7 +71,7 @@ to be a Millionare ?
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
-   
+    
     var labelStackView: UIStackView = {
         let stack = UIStackView()
         stack.axis = .vertical
@@ -96,12 +100,14 @@ to be a Millionare ?
     }
     
     @objc func startButtonTapped() {
+        music.playSound(nameOfMusic: "Button Push")
         let rulesVC = LoginViewController()
         rulesVC.modalPresentationStyle = .fullScreen
         present(rulesVC, animated: true)
     }
     
     @objc func rulesButtonTapped() {
+        music.playSound(nameOfMusic: "Button Push")
         let rulesVC = RulesViewController()
         rulesVC.modalPresentationStyle = .fullScreen
         present(rulesVC, animated: true)
@@ -109,9 +115,20 @@ to be a Millionare ?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        player?.prepareToPlay()
+        
         setLayout()
         setConstraints()
         buttonTapped()
+        playMainMusic()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        music.player?.pause()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        playMainMusic()
     }
     
     private func setLayout() {
@@ -127,8 +144,13 @@ to be a Millionare ?
         buttonStackView.addArrangedSubview(rulesButton)
     }
     
+    private func playMainMusic() {
+        music.playSound(nameOfMusic: "StartSound")
+        music.player?.numberOfLoops = 5
+    }
+}
+extension StartViewController {
     private func setConstraints() {
-        
         NSLayoutConstraint.activate([
             backgroundImage.topAnchor.constraint(equalTo: view.topAnchor),
             backgroundImage.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -157,5 +179,4 @@ to be a Millionare ?
             rulesButton.heightAnchor.constraint(equalToConstant: 50)
         ])
     }
-
 }
