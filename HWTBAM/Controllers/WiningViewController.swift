@@ -34,6 +34,7 @@ final class WiningViewController: UIViewController {
     var index = 0
     var checkedAnswer: Bool?
     var setupPrompts: UsedPrompts?
+    var loginName = ""
     
     var winBrain = WinBrain()
     let mainGameBrain = MainGameBrain()
@@ -56,6 +57,10 @@ final class WiningViewController: UIViewController {
         setupPrompts = model
     }
     
+    func setupLoginName(_ name: String) {
+        loginName = name
+    }
+    
     private func addTaps() {
         let tapScreen = UITapGestureRecognizer(target: self, action: #selector(viewTaps))
         tapScreen.cancelsTouchesInView = false
@@ -73,6 +78,7 @@ final class WiningViewController: UIViewController {
             guard let setupPrompts = setupPrompts else { fatalError() }
             viewController.mainGameBrain.setupPrompts(with: setupPrompts)
             viewController.checkUsedPrompts(with: setupPrompts)
+            viewController.setupLoginLabel(loginName)
             
             viewController.modalPresentationStyle = .fullScreen
             music.player?.stop()
