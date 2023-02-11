@@ -8,9 +8,9 @@
 import UIKit
 
 struct HallHelpModel {
-    var firstValue: CGFloat
-    var secondValue: CGFloat
-    var thirdValue: CGFloat
-    var fourthValue: CGFloat
+    var firstValue: Int
+    var secondValue: Int
+    var thirdValue: Int
+    var fourthValue: Int
 }
 

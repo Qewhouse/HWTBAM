@@ -97,21 +97,36 @@ struct MainGameBrain {
         return arrayQ
     }
     
+    //делаем модель для отображения помощи зала
     mutating func hallHelpValues() {
-        //делаем модель для отображения помощи зала
         let correctInt = getCorrectInt()
-                
-        switch correctInt {
-        case 1:
-            hallHelp = HallHelpModel(firstValue: 350, secondValue: 25, thirdValue: 75, fourthValue: 50)
-        case 2:
-            hallHelp = HallHelpModel(firstValue: 25, secondValue: 350, thirdValue: 75, fourthValue: 50)
-        case 3:
-            hallHelp = HallHelpModel(firstValue: 25, secondValue: 75, thirdValue: 350, fourthValue: 50)
-        case 4:
-            hallHelp = HallHelpModel(firstValue: 25, secondValue: 75, thirdValue: 50, fourthValue: 350)
-        default:
-            print("Omg Omg!!!")
+        
+        if questionNumber > 10 {
+            switch correctInt {
+            case 1:
+                hallHelp = HallHelpModel(firstValue: 250, secondValue: 40, thirdValue: 200, fourthValue: 10)
+            case 2:
+                hallHelp = HallHelpModel(firstValue: 200, secondValue: 40, thirdValue: 125, fourthValue: 10)
+            case 3:
+                hallHelp = HallHelpModel(firstValue: 40, secondValue: 10, thirdValue: 250, fourthValue: 200)
+            case 4:
+                hallHelp = HallHelpModel(firstValue: 10, secondValue: 200, thirdValue: 40, fourthValue: 250)
+            default:
+                print("Omg Omg!!!")
+            }
+        } else {
+            switch correctInt {
+            case 1:
+                hallHelp = HallHelpModel(firstValue: 350, secondValue: 25, thirdValue: 75, fourthValue: 50)
+            case 2:
+                hallHelp = HallHelpModel(firstValue: 25, secondValue: 350, thirdValue: 75, fourthValue: 50)
+            case 3:
+                hallHelp = HallHelpModel(firstValue: 25, secondValue: 75, thirdValue: 350, fourthValue: 50)
+            case 4:
+                hallHelp = HallHelpModel(firstValue: 25, secondValue: 75, thirdValue: 50, fourthValue: 350)
+            default:
+                print("Omg Omg!!!")
+            }
         }
     }
     

@@ -47,6 +47,56 @@ final class HallHelpViewController: UIViewController {
         return stackView
     }()
     
+    private let firstPercentLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .white
+        label.text = ""
+        label.textAlignment = .center
+        label.font = UIFont.boldSystemFont(ofSize: 20)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    private let secondPercentLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .white
+        label.text = ""
+        label.textAlignment = .center
+        label.font = UIFont.boldSystemFont(ofSize: 20)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    private let thirdPercentLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .white
+        label.text = ""
+        label.textAlignment = .center
+        label.font = UIFont.boldSystemFont(ofSize: 20)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    private let fourthPercentLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .white
+        label.text = ""
+        label.textAlignment = .center
+        label.font = UIFont.boldSystemFont(ofSize: 20)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    private let percentsStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.spacing = 20
+        stackView.distribution = .fillEqually
+        stackView.alignment = .bottom
+        stackView.axis = .horizontal
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
+    
     private let firstLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
@@ -118,6 +168,10 @@ final class HallHelpViewController: UIViewController {
     
     func setupHallHelp(with model: HallHelpModel) {
         hallHelpViewModel = model
+        firstPercentLabel.text = "\(model.firstValue / 5) %"
+        secondPercentLabel.text = "\(model.secondValue / 5) %"
+        thirdPercentLabel.text = "\(model.thirdValue / 5) %"
+        fourthPercentLabel.text = "\(model.fourthValue / 5) %"
     }
 }
 
@@ -133,12 +187,18 @@ private extension HallHelpViewController {
         pillarsStackView.addArrangedSubview(thirdView)
         pillarsStackView.addArrangedSubview(fourthView)
         
+        percentsStackView.addArrangedSubview(firstPercentLabel)
+        percentsStackView.addArrangedSubview(secondPercentLabel)
+        percentsStackView.addArrangedSubview(thirdPercentLabel)
+        percentsStackView.addArrangedSubview(fourthPercentLabel)
+        
         variantsStackView.addArrangedSubview(firstLabel)
         variantsStackView.addArrangedSubview(secondLabel)
         variantsStackView.addArrangedSubview(thirdLabel)
         variantsStackView.addArrangedSubview(fourthLabel)
         
         mainStackView.addArrangedSubview(pillarsStackView)
+        mainStackView.addArrangedSubview(percentsStackView)
         mainStackView.addArrangedSubview(variantsStackView)
         
         view.addSubview(mainStackView)
@@ -153,10 +213,10 @@ private extension HallHelpViewController {
             mainStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             mainStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             
-            firstView.heightAnchor.constraint(equalToConstant: model.firstValue),
-            secondView.heightAnchor.constraint(equalToConstant: model.secondValue),
-            thirdView.heightAnchor.constraint(equalToConstant: model.thirdValue),
-            fourthView.heightAnchor.constraint(equalToConstant: model.fourthValue)
+            firstView.heightAnchor.constraint(equalToConstant: CGFloat(model.firstValue)),
+            secondView.heightAnchor.constraint(equalToConstant: CGFloat(model.secondValue)),
+            thirdView.heightAnchor.constraint(equalToConstant: CGFloat(model.thirdValue)),
+            fourthView.heightAnchor.constraint(equalToConstant: CGFloat(model.fourthValue))
         ])
     }
 }
