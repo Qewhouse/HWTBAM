@@ -10,7 +10,6 @@ import AVFoundation
 
 class StartViewController: UIViewController {
     
-    var player: AVAudioPlayer?
     let music = MusicModel()
     let shadow = ShadowButton()
     
@@ -117,12 +116,10 @@ to be a Millionare ?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        player?.prepareToPlay()
         
         setLayout()
         setConstraints()
         buttonTapped()
-        playMainMusic()
     }
     
     override func viewWillDisappear(_ animated: Bool) {

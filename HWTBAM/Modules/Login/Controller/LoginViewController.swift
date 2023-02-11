@@ -3,8 +3,8 @@ import AVFoundation
 
 class LoginViewController: UIViewController {
     
-    var player: AVAudioPlayer?
     let music = MusicModel()
+    let buttonMusic = MusicModel()
 
     private let backgroundImageView: UIImageView = {
         let image = UIImageView()
@@ -116,7 +116,7 @@ class LoginViewController: UIViewController {
     
     @objc
     private func didTapRegestrationButton() {
-        music.playSound(nameOfMusic: "Button Push")
+        buttonMusic.playSound(nameOfMusic: "Button Push")
         let rulesVC = RegistrationViewController()
         rulesVC.modalPresentationStyle = .fullScreen
         present(rulesVC, animated: true)
@@ -124,11 +124,12 @@ class LoginViewController: UIViewController {
     
     @objc
     private func didTapGuestButton() {
-        music.playSound(nameOfMusic: "Button Push")
+        buttonMusic.playSound(nameOfMusic: "Button Push")
         let viewController = MainGameViewController()
         viewController.setupLoginLabel("Гость")
         viewController.modalPresentationStyle = .fullScreen
         present(viewController, animated: true)
+        music.player?.stop()
     }
 }
 
