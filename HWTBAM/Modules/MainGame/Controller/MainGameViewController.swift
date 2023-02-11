@@ -367,6 +367,7 @@ class MainGameViewController: UIViewController {
         
         promptCallToFriendButton.isEnabled = model.fiftyFifty
         promptCallToFriendButton.setImage(UIImage(named: "redCrossCallToFriend"), for: .normal)
+    }
 
     func checkEndTime() {
         if !timerView.timerFlag {
