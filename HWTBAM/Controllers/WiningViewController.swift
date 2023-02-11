@@ -14,14 +14,14 @@ final class WiningViewController: UIViewController {
         image.image = UIImage(named: "background")
         return image
     }()
-
+    
     private let headerImage: UIImageView = {
         let image = UIImageView(frame: .zero)
         image.translatesAutoresizingMaskIntoConstraints = false
         image.image = UIImage(named: "image 1")
         return image
     }()
-
+    
     private let moneyList: UITableView = {
         let tableView = UITableView()
         tableView.register(WiningTableViewCell.self, forCellReuseIdentifier: WiningTableViewCell.id)
@@ -32,7 +32,11 @@ final class WiningViewController: UIViewController {
     
     let moneyArray = ["100", "200", "300", "500", "1 000", "2 000", "4 000", "8 000", "16 000", "32 000", "64 000", "125 000", "250 000", "500 000", "1 000 000"]
     var index = 0
-     
+    var checkedAnswer: Bool?
+    
+    var winBrain = WinBrain()
+    let mainGameBrain = MainGameBrain()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupLayout()
@@ -43,21 +47,33 @@ final class WiningViewController: UIViewController {
         index = value
     }
     
+    func setupCheckedAnswer(isChecked: Bool) {
+        checkedAnswer = isChecked
+    }
+    
     private func addTaps() {
-            let tapScreen = UITapGestureRecognizer(target: self, action: #selector(viewTaps))
-            tapScreen.cancelsTouchesInView = false
-            view.addGestureRecognizer(tapScreen)
-        }
-        
-        @objc private func viewTaps() {
+        let tapScreen = UITapGestureRecognizer(target: self, action: #selector(viewTaps))
+        tapScreen.cancelsTouchesInView = false
+        view.addGestureRecognizer(tapScreen)
+    }
+    
+    @objc private func viewTaps() {
+        if checkedAnswer == true {
             let upperIndex = index + 1
-            let mainVC = MainGameViewController()
-            mainVC.mainGameBrain.nextQuestion(upperIndex)
-            mainVC.setupMoneyLabel(moneyArray[index])
-            mainVC.modalPresentationStyle = .fullScreen
+
+            let viewController = MainGameViewController()
+            viewController.mainGameBrain.nextQuestion(upperIndex)
+            viewController.setupMoneyLabel(moneyArray[index])
+            viewController.modalPresentationStyle = .fullScreen
             music.player?.stop()
-            present(mainVC, animated: false)
+            present(viewController, animated: false)
+        } else if checkedAnswer == false {
+            let viewController = LoseScreenViewController()
+            viewController.modalPresentationStyle = .fullScreen
+            music.player?.stop()
+            present(viewController, animated: false)
         }
+    }
     
     func setupLayout() {
         view.addSubview(backgroundImageView)
@@ -71,7 +87,7 @@ final class WiningViewController: UIViewController {
 
 extension WiningViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return WinModel.winModels.count
+        return WinBrain().winValues.count
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -81,7 +97,7 @@ extension WiningViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: WiningTableViewCell.id, for: indexPath) as? WiningTableViewCell
         let currentQuestion = playerAnswer?.question == indexPath.row && playerAnswer?.result != nil
-        cell?.configure(model: WinModel.winModels[indexPath.row], currentQuestion: currentQuestion)
+        cell?.configure(model: WinBrain().winValues[indexPath.row], currentQuestion: currentQuestion)
         return cell ?? UITableViewCell()
     }
 }
