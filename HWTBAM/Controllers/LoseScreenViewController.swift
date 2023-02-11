@@ -87,6 +87,10 @@ class LoseScreenViewController: UIViewController {
         playAgainButton.addTarget(self, action: #selector(playAgainButtonTapped), for: .touchUpInside)
     }
     
+    func setupLoseViewController(_ value: Int) {
+        subLabel.text = String(value)
+    }
+    
     @objc func playAgainButtonTapped() {
         let viewController = MainGameViewController()
         viewController.modalPresentationStyle = .fullScreen

@@ -11,6 +11,7 @@ struct MainGameBrain {
     var questionNumber = 0
     let intArray = [1, 2, 3, 4]
     var hallHelp: HallHelpModel?
+    var usedPrompts = UsedPrompts(fiftyFifty: true, hallHelp: true, callToFriend: true)
     
         let quiz = [
         Question(text: "Универсальные шаблоны помогают реализовать это", answer: ["Архитектуру", "Коллекции", "Переменные свойства", "Гибкие функции"], correctAnswer: "4"),
@@ -39,15 +40,6 @@ struct MainGameBrain {
     func getQuestionText() -> String {
         return quiz[questionNumber].text
     }
-    
-//     mutating func nextQuestion() {
-//
-//        if questionNumber + 1 < quiz.count {
-//            questionNumber += 1
-//        } else {
-//            questionNumber = 0
-//        }
-//    }
     
     mutating func changeCostText() -> String {
         return moneyLabelArray[questionNumber]
@@ -145,6 +137,40 @@ struct MainGameBrain {
         
         guard let callToFriendIntValue = finalArray.randomElement() else { fatalError() }
         return callToFriendIntValue
+    }
+    
+    mutating func setfiftyFifty(_ isUsed: Bool) {
+        usedPrompts.fiftyFifty = isUsed
+    }
+    
+    mutating func setHallHelp(_ isUsed: Bool) {
+        usedPrompts.hallHelp = isUsed
+    }
+    
+    mutating func setCallToFriend(_ isUsed: Bool) {
+        usedPrompts.fiftyFifty = isUsed
+    }
+    
+    mutating func setupPrompts(with model: UsedPrompts) {
+        usedPrompts = model
+    }
+    
+    func safeMoney(_ number: Int) -> Int {
+        var intValue = 0
+        
+        switch number {
+        case 0..<5:
+            intValue = 15
+        case 5..<10:
+            intValue = 10
+        case 10..<15:
+            intValue = 5
+        case 15:
+            intValue = 0
+        default:
+            print("default value")
+        }
+        return intValue
     }
     
     func forEachArray<T: UIView>(_ array: [T], _ value: Int, _ color: UIColor) {
