@@ -1,8 +1,8 @@
 //
-//  WinModel.swift
+//  WinBrain.swift
 //  HWTBAM
 //
-//  Created by Alexander Altman on 07.02.2023.
+//  Created by Vania Aryutov on 11.02.2023.
 //
 
 import UIKit
@@ -42,11 +42,10 @@ struct WinBrain {
         WinModel(prize: "250 000", number: "Вопрос 13", backgroundcolorLabel: Theme.questionColor.withAlphaComponent(0.5), safeSum: "32 000"),
         WinModel(prize: "500 000", number: "Вопрос 14", backgroundcolorLabel: Theme.questionColor.withAlphaComponent(0.5), safeSum: "32 000"),
         WinModel(prize: "1 000 000", number: "Вопрос 15", backgroundcolorLabel: Theme.questionColor.withAlphaComponent(0.5), safeSum: "32 000")
-]
+    ]
     
     mutating func getSafeSum(cellNumber: Int) -> String {
         return reversedWinValues[cellNumber].safeSum
     }
 }
-
 
