@@ -1,5 +1,5 @@
 //
-//  WinBrain.swift
+//  WinModel.swift
 //  HWTBAM
 //
 //  Created by Vania Aryutov on 10.02.2023.
