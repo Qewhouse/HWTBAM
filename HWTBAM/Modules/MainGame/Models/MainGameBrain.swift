@@ -10,26 +10,48 @@ import UIKit
 struct MainGameBrain {
     var questionNumber = 0
     let intArray = [1, 2, 3, 4]
+    let qNumArray = [0, 1, 2, 3, 4]
     var hallHelp: HallHelpModel?
     var usedPrompts = UsedPrompts(fiftyFifty: true, hallHelp: true, callToFriend: true)
+    let getRandomInt = GetRandomInt()
     
-        let quiz = [
-        Question(text: "Универсальные шаблоны помогают реализовать это", answer: ["Архитектуру", "Коллекции", "Переменные свойства", "Гибкие функции"], correctAnswer: "4"),
-        Question(text: "Сколько способов обработки ошибок существует в Swift?", answer: ["2", "4", "1", "3"], correctAnswer: "2"),
-        Question(text: "Обработка ошибок, это процесс ...?", answer: ["Реагирования на ошибки", "Прогнозирования ошибок", "Хранения ошибок", "Генерации ошибок"], correctAnswer: "1"),
-        Question(text: "Как называется класс, у которого наследуют?", answer: ["Наследник", "Класс", "Подкласс", "Суперкласс"], correctAnswer: "4"),
-        Question(text: "Если String пустая, то startIndex и endIndex будут ...?", answer: ["Пустыми", "nil", "Неравными", "Равными"], correctAnswer: "4"),
-        Question(text: "Как традиционно называют экземпляр класса в ООП?", answer: ["Экземпляр", "Структура", "Объект", "Таргет"], correctAnswer: "3"),
-        Question(text: "Что из перечисленного является ссылочным типом?", answer: ["Свойства", "Структуры", "Классы", "Перечисления"], correctAnswer: "3"),
-        Question(text: "Можно ли сравнивать две строки?", answer: ["Нет", "Да", "Только !=", "Только =="], correctAnswer: "2"),
-        Question(text: "Как пишется сокращенная форма записи массива в Swift?", answer: ["Array<ElementType>", "Array(ElementType)[]", "[ElementType]", "[ElementType]()"], correctAnswer: "3"),
-        Question(text: "Сколько основных типов коллекций обеспечивает Swift?", answer: ["3", "5", "2", "4"], correctAnswer: "1"),
-        Question(text: "Сколько основных свойств имеет UIStackView?", answer: ["4", "3", "2", "1"], correctAnswer: "1"),
-        Question(text: "Для каких типов доступны деинициализаторы?", answer: ["Типы перечислений", "Структурные типы", "Все перечисленные ", "Классовые типы"], correctAnswer: "4"),
-        Question(text: "Чем разделяются протокола в композиции протоколов?", answer: [",", "&", "-", ":"], correctAnswer: "2"),
-        Question(text: "Какой тип хранит только положительные целые числа?", answer: ["UInt", "Int", "Double", "Float"], correctAnswer: "1"),
-        Question(text: "Являются ли Swift Array универсальными?", answer: ["Нет", "Только Dictionary", "Да", "Только Array"], correctAnswer: "3")
-        ]
+//        let quiz = [
+//        Question(text: "Универсальные шаблоны помогают реализовать это", answer: ["Архитектуру", "Коллекции", "Переменные свойства", "Гибкие функции"], correctAnswer: "4"),
+//        Question(text: "Сколько способов обработки ошибок существует в Swift?", answer: ["2", "4", "1", "3"], correctAnswer: "2"),
+//        Question(text: "Обработка ошибок, это процесс ...?", answer: ["Реагирования на ошибки", "Прогнозирования ошибок", "Хранения ошибок", "Генерации ошибок"], correctAnswer: "1"),
+//        Question(text: "Как называется класс, у которого наследуют?", answer: ["Наследник", "Класс", "Подкласс", "Суперкласс"], correctAnswer: "4"),
+//        Question(text: "Если String пустая, то startIndex и endIndex будут ...?", answer: ["Пустыми", "nil", "Неравными", "Равными"], correctAnswer: "4"),
+//        Question(text: "Как традиционно называют экземпляр класса в ООП?", answer: ["Экземпляр", "Структура", "Объект", "Таргет"], correctAnswer: "3"),
+//        Question(text: "Что из перечисленного является ссылочным типом?", answer: ["Свойства", "Структуры", "Классы", "Перечисления"], correctAnswer: "3"),
+//        Question(text: "Можно ли сравнивать две строки?", answer: ["Нет", "Да", "Только !=", "Только =="], correctAnswer: "2"),
+//        Question(text: "Как пишется сокращенная форма записи массива в Swift?", answer: ["Array<ElementType>", "Array(ElementType)[]", "[ElementType]", "[ElementType]()"], correctAnswer: "3"),
+//        Question(text: "Сколько основных типов коллекций обеспечивает Swift?", answer: ["3", "5", "2", "4"], correctAnswer: "1"),
+//        Question(text: "Сколько основных свойств имеет UIStackView?", answer: ["4", "3", "2", "1"], correctAnswer: "1"),
+//        Question(text: "Для каких типов доступны деинициализаторы?", answer: ["Типы перечислений", "Структурные типы", "Все перечисленные ", "Классовые типы"], correctAnswer: "4"),
+//        Question(text: "Чем разделяются протокола в композиции протоколов?", answer: [",", "&", "-", ":"], correctAnswer: "2"),
+//        Question(text: "Какой тип хранит только положительные целые числа?", answer: ["UInt", "Int", "Double", "Float"], correctAnswer: "1"),
+//        Question(text: "Являются ли Swift Array универсальными?", answer: ["Нет", "Только Dictionary", "Да", "Только Array"], correctAnswer: "3")
+//        ]
+    
+    
+    
+    let quiz = [
+    [Question(text: "Универсальные шаблоны помогают реализовать это", answer: ["Архитектуру", "Коллекции", "Переменные свойства", "Гибкие функции"], correctAnswer: "4"),
+    Question(text: "Сколько способов обработки ошибок существует в Swift?", answer: ["2", "4", "1", "3"], correctAnswer: "2"),
+    Question(text: "Обработка ошибок, это процесс ...?", answer: ["Реагирования на ошибки", "Прогнозирования ошибок", "Хранения ошибок", "Генерации ошибок"], correctAnswer: "1"),
+    Question(text: "Как называется класс, у которого наследуют?", answer: ["Наследник", "Класс", "Подкласс", "Суперкласс"], correctAnswer: "4"),
+    Question(text: "Если String пустая, то startIndex и endIndex будут ...?", answer: ["Пустыми", "nil", "Неравными", "Равными"], correctAnswer: "4")],
+    [Question(text: "Как традиционно называют экземпляр класса в ООП?", answer: ["Экземпляр", "Структура", "Объект", "Таргет"], correctAnswer: "3"),
+    Question(text: "Что из перечисленного является ссылочным типом?", answer: ["Свойства", "Структуры", "Классы", "Перечисления"], correctAnswer: "3"),
+    Question(text: "Можно ли сравнивать две строки?", answer: ["Нет", "Да", "Только !=", "Только =="], correctAnswer: "2"),
+    Question(text: "Как пишется сокращенная форма записи массива в Swift?", answer: ["Array<ElementType>", "Array(ElementType)[]", "[ElementType]", "[ElementType]()"], correctAnswer: "3"),
+    Question(text: "Сколько основных типов коллекций обеспечивает Swift?", answer: ["3", "5", "2", "4"], correctAnswer: "1")],
+    [Question(text: "Сколько основных свойств имеет UIStackView?", answer: ["4", "3", "2", "1"], correctAnswer: "1"),
+    Question(text: "Для каких типов доступны деинициализаторы?", answer: ["Типы перечислений", "Структурные типы", "Все перечисленные ", "Классовые типы"], correctAnswer: "4"),
+    Question(text: "Чем разделяются протокола в композиции протоколов?", answer: [",", "&", "-", ":"], correctAnswer: "2"),
+    Question(text: "Какой тип хранит только положительные целые числа?", answer: ["UInt", "Int", "Double", "Float"], correctAnswer: "1"),
+    Question(text: "Являются ли Swift Array универсальными?", answer: ["Нет", "Только Dictionary", "Да", "Только Array"], correctAnswer: "3")]
+    ]
     
     let questionNumberArray = [14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0]
     let numberArray = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
@@ -37,8 +59,39 @@ struct MainGameBrain {
     let moneyLabelArray = ["100", "200", "300", "500", "1 000", "2 000", "4 000", "8 000", "16 000", "32 000", "64 000", "125 000", "250 000", "500 000", "1 000 000"]
     let numberLabelArray = ["Вопрос 1", "Вопрос 2", "Вопрос 3", "Вопрос 4", "Вопрос 5", "Вопрос 6", "Вопрос 7", "Вопрос 8", "Вопрос 9", "Вопрос 10", "Вопрос 11", "Вопрос 12", "Вопрос 13", "Вопрос 14", "Вопрос 15"]
     
+//    func getQuestionText() -> String {
+//        return quiz[questionNumber].text
+//    }
+    
+    
+    func getBlockQuestionsNumber(_ number: Int) -> Int {
+        var valueInt = 0
+        
+        switch number {
+        case 0..<6:
+            valueInt = 0
+        case 6..<11:
+            valueInt = 1
+        case 11..<15:
+            valueInt = 2
+        case 15:
+            valueInt = 2
+        default:
+            print("default value")
+        }
+        return valueInt
+    }
+
     func getQuestionText() -> String {
-        return quiz[questionNumber].text
+        
+        let blockNumber = getBlockQuestionsNumber(questionNumber)
+        
+        let arrayInt = getRandomInt.randomInt
+        
+        let intValue = getRandomInt.intValue
+        getRandomInt.counter()
+        
+        return quiz[blockNumber][arrayInt[intValue]].text
     }
     
     mutating func changeCostText() -> String {
@@ -54,7 +107,13 @@ struct MainGameBrain {
    }
     
     mutating func checkAnswer(userAnswer: String) -> Bool {
-        if userAnswer == quiz[questionNumber].correctAnswer {
+        let blockNumber = getBlockQuestionsNumber(questionNumber)
+        let arrayInt = getRandomInt.randomInt
+        
+        let intValue = getRandomInt.intValue
+        getRandomInt.counter()
+        
+        if userAnswer == quiz[blockNumber][arrayInt[intValue]].correctAnswer {
             return true
         } else {
             return false
@@ -62,9 +121,28 @@ struct MainGameBrain {
     }
     
     func getButtonTitle(with buttonNumber: Int) -> String {
-        let stringValue = quiz[questionNumber].answer[buttonNumber]
+        let blockNumber = getBlockQuestionsNumber(questionNumber)
+        let arrayInt = getRandomInt.randomInt
+        
+        let intValue = getRandomInt.intValue
+        getRandomInt.counter()
+        
+        let stringValue = quiz[blockNumber][arrayInt[intValue]].answer[buttonNumber]
         return stringValue
     }
+    
+//    mutating func checkAnswer(userAnswer: String) -> Bool {
+//        if userAnswer == quiz[questionNumber].correctAnswer {
+//            return true
+//        } else {
+//            return false
+//        }
+//    }
+//
+//    func getButtonTitle(with buttonNumber: Int) -> String {
+//        let stringValue = quiz[questionNumber].answer[buttonNumber]
+//        return stringValue
+//    }
     
     mutating func promptFifryFifry(_ buttons: [UIButton]) {
         let twoNumberArray = fiftyFifty()
@@ -206,8 +284,19 @@ struct MainGameBrain {
         sender.isEnabled = false
     }
     
+//    func getCorrectInt() -> Int {
+//        guard let correctInt = Int(quiz[questionNumber].correctAnswer) else { fatalError() }
+//        return correctInt
+//    }
+    
     func getCorrectInt() -> Int {
-        guard let correctInt = Int(quiz[questionNumber].correctAnswer) else { fatalError() }
+        let blockNumber = getBlockQuestionsNumber(questionNumber)
+        let arrayInt = getRandomInt.randomInt
+        
+        let intValue = getRandomInt.intValue
+        getRandomInt.counter()
+        
+        guard let correctInt = Int(quiz[blockNumber][arrayInt[intValue]].correctAnswer) else { fatalError() }
         return correctInt
     }
 }
