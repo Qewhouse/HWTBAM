@@ -10,6 +10,7 @@ class LoginViewController: UIViewController {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
         image.image = UIImage(named: "background2")
+        image.contentMode = .scaleAspectFill
         return image
     }()
 
