@@ -6,7 +6,7 @@
 //
 
 final class LogicMeneger {
-    var rightMakeMistake = true
+    var rightMakeMistake = false
     var intValue: Int = 4
     let qNumArray = [0, 1, 2, 3, 4]
     var randomInt: [Int] = []
