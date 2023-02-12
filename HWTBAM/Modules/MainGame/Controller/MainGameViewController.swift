@@ -394,7 +394,7 @@ class MainGameViewController: UIViewController {
         Thread.sleep(forTimeInterval: 5)
         
         if userGotItRight {
-            
+            LogicMeneger.shared.rightMakeMistake = false
             sender.backgroundColor = UIColor.green
             mainGameBrain.forEachArray(labelArray, sender.tag, .green)
             
@@ -414,9 +414,6 @@ class MainGameViewController: UIViewController {
             
         } else if LogicMeneger.shared.rightMakeMistake {
             LogicMeneger.shared.rightMakeMistake = false
-            promptCallToFriendButton.setImage(UIImage(named: "redCrossCallToFriend"), for: .normal)
-            
-            // Здесь нужно изменить состояние usedPromtpts.callToFriend
             
             sender.backgroundColor = UIColor.orange
             mainGameBrain.forEachArray(labelArray, sender.tag, .orange)
