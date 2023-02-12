@@ -4,9 +4,7 @@ import AVFoundation
 final class WiningViewController: UIViewController {
     
     let music = MusicModel()
-    
     var playerAnswer: PlayerAnswer?
-    //    private var answerModel: AnswerModel?
     
     private let backgroundImageView: UIImageView = {
         let image = UIImageView()
