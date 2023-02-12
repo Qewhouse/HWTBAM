@@ -29,7 +29,6 @@ class StartViewController: UIViewController {
         return imageView
     }()
     
-    
     private let mainLabel: UILabel = {
         let label = UILabel()
         label.text = "Welcome"
@@ -141,7 +140,6 @@ to be a Millionare ?
         labelStackView.addArrangedSubview(subLabel)
         
         buttonStackView.addArrangedSubview(startButton)
-        //buttonStackView.addArrangedSubview(rulesButton)
         view.addSubview(rulesButton)
         
         shadow.setShadowButton(startButton)
