@@ -205,6 +205,7 @@ struct MainGameBrain {
     }
     
     func callToFriend() -> Int {
+        LogicMeneger.shared.rightMakeMistake = true
         var arrayQ = intArray
         let correctInt = getCorrectInt()
 
