@@ -207,7 +207,6 @@ struct MainGameBrain {
             print("default value")
         }
         
-//        let loseViewModel = LoseViewModel(safeNumber: safeNumber, safeMoney: safeMoney)
         let loseViewModel = LoseViewModel(safeNumber: safeNumber, safeMoney: safeMoney)
         return loseViewModel
     }

@@ -40,6 +40,7 @@ class RegistrationViewController: UIViewController {
         textField.placeholder = "enter here"
         textField.textColor = .white
         textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.layer.sublayerTransform = CATransform3DMakeTranslation(20, 0, 0)
         textField.layer.borderWidth = 1
         textField.layer.borderColor = UIColor.white.cgColor
         textField.layer.cornerRadius = 12
@@ -61,6 +62,7 @@ class RegistrationViewController: UIViewController {
         textField.placeholder = "enter here"
         textField.textColor = .white
         textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.layer.sublayerTransform = CATransform3DMakeTranslation(20, 0, 0)
         textField.layer.borderWidth = 1
         textField.layer.borderColor = UIColor.white.cgColor
         textField.layer.cornerRadius = 12
@@ -87,7 +89,6 @@ class RegistrationViewController: UIViewController {
         return stackView
     }()
     
-//    let storage: KeyValueStorage = SharedStorage()
     let userService = UserService.shared
     
     override func viewDidLoad() {
@@ -112,8 +113,8 @@ class RegistrationViewController: UIViewController {
 private extension RegistrationViewController {
     
     private func setStorage() {
-        let loginValue = nameRegistrationTextField.text ?? ""
-        let passwordValue = passwordRegistrationTextField.text ?? ""
+        guard let loginValue = nameRegistrationTextField.text?.trimmingCharacters(in: .whitespaces) else { fatalError() }
+        guard let passwordValue = passwordRegistrationTextField.text?.trimmingCharacters(in: .whitespaces) else { fatalError() }
         let newUser = UserStruct(loginName: loginValue, password: passwordValue, moneySum: 0)
         userService.saveUser(user: newUser)
     }

@@ -5,7 +5,7 @@ class LoginViewController: UIViewController {
     
     let music = MusicModel()
     let buttonMusic = MusicModel()
-
+    
     private let backgroundImageView: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
@@ -13,14 +13,14 @@ class LoginViewController: UIViewController {
         image.contentMode = .scaleAspectFill
         return image
     }()
-
+    
     private let logoImageView: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
         image.image = UIImage(named: "image 1")
         return image
     }()
-
+    
     private let nameLoginLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -30,10 +30,12 @@ class LoginViewController: UIViewController {
         label.textAlignment = .center
         return label
     }()
-
+    
     private let nameLoginTextField: UITextField = {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.textColor = .white
+        textField.layer.sublayerTransform = CATransform3DMakeTranslation(20, 0, 0)
         textField.layer.borderWidth = 1
         textField.layer.borderColor = UIColor.white.cgColor
         textField.layer.cornerRadius = 12
@@ -49,16 +51,18 @@ class LoginViewController: UIViewController {
         label.textAlignment = .center
         return label
     }()
-
+    
     private let passwordLoginTextField: UITextField = {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.layer.borderWidth = 1
+        textField.layer.sublayerTransform = CATransform3DMakeTranslation(20, 0, 0)
+        textField.textColor = .white
         textField.layer.borderColor = UIColor.white.cgColor
         textField.layer.cornerRadius = 12
         return textField
     }()
-
+    
     private lazy var loginButton: UIButton = {
         let button = UIButton(type: .system)
         button.addTarget(self, action: #selector(didTapLoginButton), for: .touchUpInside)
@@ -100,7 +104,7 @@ class LoginViewController: UIViewController {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
-
+    
     let storage: KeyValueStorage = SharedStorage()
     let userService = UserService.shared
     
@@ -135,36 +139,44 @@ class LoginViewController: UIViewController {
 }
 
 private extension LoginViewController {
-    
     func userLogin() {
-        
-        let login = nameLoginTextField.text
-        let password = passwordLoginTextField.text
-        
+
+        let login = nameLoginTextField.text?.trimmingCharacters(in: .whitespaces)
+        let password = passwordLoginTextField.text?.trimmingCharacters(in: .whitespaces)
+
         if login != "" && password != "" {
-            
-        guard let key = login else { return }
-            
-            let user = userService.getUser(key: key)
-            
-            if password == user.password && login == user.loginName {
-                let viewController = MainGameViewController()
-                viewController.modalPresentationStyle = .fullScreen
-                viewController.setupLoginLabel(user.loginName)
-                music.playSound(nameOfMusic: "Button Push")
-                present(viewController, animated: true)
-            } else {
             wrongLogPas()
+
+        guard let key = login else { return }
+            if let userData = storage.getValueData(key: key) {
+                let decoder = JSONDecoder()
+                let user = try? decoder.decode(UserStruct.self, from: userData)
+                if password == user?.password {
+                    let viewController = MainGameViewController()
+                    guard let name = user?.loginName else { fatalError() }
+                    viewController.modalPresentationStyle = .fullScreen
+                    viewController.setupLoginLabel(name)
+                    music.playSound(nameOfMusic: "Button Push")
+                    present(viewController, animated: false)
+                } else {
+                    wrongLogPas()
+                }
             }
         } else {
-            wrongLogPas()
+            emptyLogPas()
         }
     }
     
-    func wrongLogPas() {
+    func emptyLogPas() {
         nameLoginLabel.text = "write login and password please"
         nameLoginLabel.font = .systemFont(ofSize: 20)
-        nameLoginLabel.textColor = .red
+        nameLoginLabel.textColor = .darkGray
+    }
+    
+    func wrongLogPas() {
+        nameLoginLabel.text = "WRONG LOGIN OR PASSWORD"
+        nameLoginLabel.font = .systemFont(ofSize: 20)
+        nameLoginLabel.textColor = .darkGray
     }
     
     func setupViewController() {
@@ -180,7 +192,7 @@ private extension LoginViewController {
         mainStackView.addArrangedSubview(loginButton)
         mainStackView.addArrangedSubview(registrationButton)
         mainStackView.addArrangedSubview(guestButton)
-
+        
         view.addSubview(backgroundImageView)
         view.addSubview(logoImageView)
         view.addSubview(mainStackView)
@@ -192,7 +204,7 @@ private extension LoginViewController {
             logoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             logoImageView.heightAnchor.constraint(equalToConstant: 200),
             logoImageView.widthAnchor.constraint(equalToConstant: 200),
-
+            
             backgroundImageView.topAnchor.constraint(equalTo: view.topAnchor),
             backgroundImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             backgroundImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
@@ -205,29 +217,3 @@ private extension LoginViewController {
         ])
     }
 }
-//
-//func userLogin() {
-//
-//    let login = nameLoginTextField.text
-//    let password = passwordLoginTextField.text
-//
-//    if login != "" && password != "" {
-//
-//    guard let key = login else { return }
-//
-//    if let userData = storage.getValueData(key: key) {
-//        let decoder = JSONDecoder()
-//        let user = try? decoder.decode(UserStruct.self, from: userData)
-//
-//            if password == user?.password {
-//                let viewController = MainGameViewController()
-//                viewController.modalPresentationStyle = .fullScreen
-//                present(viewController, animated: true)
-//            } else {
-//                wrongLogPas()
-//            }
-//        }
-//    } else {
-//        wrongLogPas()
-//    }
-//}

@@ -10,10 +10,6 @@ import AVFoundation
 
 class MainGameViewController: UIViewController {
     
-    let music = MusicModel()
-    
-    private var checkTimer = Timer()
-    
     private let backgroundImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "background")
@@ -245,7 +241,7 @@ class MainGameViewController: UIViewController {
     
     private lazy var promptCallToFriendButton: UIButton = {
         let button = UIButton(type: .custom)
-        button.setImage(UIImage(named: "callToFriend"), for: .normal)
+        button.setImage(UIImage(named: "mistake"), for: .normal)
         button.clipsToBounds = true
         button.addTarget(self, action: #selector(didTapCallToFriendButton), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -316,6 +312,8 @@ class MainGameViewController: UIViewController {
     
     var mainGameBrain = MainGameBrain()
     var winBrain = WinBrain()
+    let music = MusicModel()
+    private var checkTimer = Timer()
     
     private lazy var labelArray: [UILabel] = [letterALabel,
                                               letterBLabel,
@@ -350,7 +348,6 @@ class MainGameViewController: UIViewController {
     }
     
     func setupMoneyLabel(_ bablo: String) {
-//        moneyLabel.text = "\(bablo) руб."
         moneyLabel.text = bablo
     }
     
@@ -374,11 +371,13 @@ class MainGameViewController: UIViewController {
     func checkEndTime() {
         if !timerView.timerFlag {
             let index = mainGameBrain.questionNumber
+            guard let loginName = loginLabel.text else { fatalError() }
             music.player?.stop()
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
                 self?.music.player?.stop()
                 let viewController = WiningViewController()
                 viewController.modalPresentationStyle = .fullScreen
+                viewController.setupLoginName(loginName)
                 viewController.playerAnswer = PlayerAnswer(question: self?.mainGameBrain.safeMoney(index).safeNumber ?? Int(), result: true)
                 viewController.setupSafeMoney(with: self?.mainGameBrain.safeMoney(index) ?? LoseViewModel(safeNumber: Int(), safeMoney: String()))
                 viewController.setupCheckedAnswer(isChecked: false)
