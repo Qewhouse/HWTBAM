@@ -448,9 +448,9 @@ class MainGameViewController: UIViewController {
             }
         }
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
-            self?.updateUI()
-        }
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
+//            self?.updateUI()
+//        }
     }
     
     @objc
