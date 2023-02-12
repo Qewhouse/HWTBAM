@@ -445,8 +445,8 @@
 		542BA8482995366A0017C36A /* Registration */ = {
 			isa = PBXGroup;
 			children = (
-				540FDB7A2998E83500CEBFB1 /* Models */,
 				542BA8492995367A0017C36A /* Controller */,
+				540FDB7A2998E83500CEBFB1 /* Models */,
 			);
 			path = Registration;
 			sourceTree = "<group>";

@@ -69,7 +69,7 @@ class MainGameViewController: UIViewController {
         label.font = UIFont.systemFont(ofSize: 24)
         label.textColor = .green
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "0 руб."
+        label.text = "0"
         label.numberOfLines = 0
         label.textAlignment = .right
         return label
@@ -480,7 +480,6 @@ class MainGameViewController: UIViewController {
             self.music.playSound(nameOfMusic: "timingAfter")
             self.music.player?.numberOfLoops = 5
         }
-        
         
         let viewController = HallHelpViewController()
         viewController.setupHallHelp(with: hallHelp)
