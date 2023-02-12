@@ -160,7 +160,6 @@ final class HallHelpViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //TODO: - заменить на фоновую картинку
         view.backgroundColor = .gray
         
         setupViewController()

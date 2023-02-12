@@ -9,7 +9,6 @@ import UIKit
 
 enum Theme {
     // MARK: - Colors
-    
     static let accentColor: UIColor = UIColor(named: "AccentColor") ?? .white
     static let correctColor: UIColor = UIColor(named: "CorrectColor") ?? .white
     static let millionColor: UIColor = UIColor(named: "MillionColor") ?? .white

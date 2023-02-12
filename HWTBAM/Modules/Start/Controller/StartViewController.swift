@@ -66,6 +66,7 @@ to be a Millionare ?
     private let rulesButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: "rules"), for: .normal)
+        button.tintColor = UIColor.white
         button.layer.cornerRadius = 15
         button.layer.borderColor = UIColor.systemGray.cgColor
         button.layer.borderWidth = 2
