@@ -30,6 +30,7 @@ class RulesViewController: UIViewController {
         let label = UILabel()
         label.text = "Правила игры"
         label.font = UIFont.boldSystemFont(ofSize: 32)
+        label.textColor = .white
         label.textAlignment = .center
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -41,9 +42,10 @@ class RulesViewController: UIViewController {
         let label = UILabel()
         let rules = Rules()
         label.numberOfLines = 0
-        label.font = UIFont.systemFont(ofSize: 18)
+        label.font = UIFont.systemFont(ofSize: 15)
         label.textAlignment = .justified
         label.text = rules.rules
+        label.textColor = .white
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()

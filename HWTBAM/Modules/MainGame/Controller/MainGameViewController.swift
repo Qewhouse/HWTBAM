@@ -17,6 +17,7 @@ class MainGameViewController: UIViewController {
     private let backgroundImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "background")
+        imageView.contentMode = .scaleAspectFill
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
@@ -25,7 +26,7 @@ class MainGameViewController: UIViewController {
     
     private let questionLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 24)
+        label.font = .boldSystemFont(ofSize: 30)
         label.textColor = .white
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Here will be your question"
@@ -78,15 +79,9 @@ class MainGameViewController: UIViewController {
         return label
     }()
     
-    private let topView: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-    
-    
     private lazy var answerAButton: UIButton = {
         let button = UIButton(type: .system)
+        button.layer.borderWidth = 5
         button.layer.cornerRadius = 25
         button.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMaxXMaxYCorner]
         button.clipsToBounds = true
@@ -104,6 +99,7 @@ class MainGameViewController: UIViewController {
     private lazy var answerBButton: UIButton = {
         let button = UIButton(type: .system)
         button.layer.cornerRadius = 25
+        button.layer.borderWidth = 5
         button.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMaxXMaxYCorner]
         button.clipsToBounds = true
         button.backgroundColor = UIColor.blue
@@ -120,6 +116,7 @@ class MainGameViewController: UIViewController {
     private lazy var answerCButton: UIButton = {
         let button = UIButton(type: .system)
         button.layer.cornerRadius = 25
+        button.layer.borderWidth = 5
         button.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMaxXMaxYCorner]
         button.clipsToBounds = true
         button.backgroundColor = UIColor.blue
@@ -136,6 +133,7 @@ class MainGameViewController: UIViewController {
     private lazy var answerDButton: UIButton = {
         let button = UIButton(type: .system)
         button.layer.cornerRadius = 25
+        button.layer.borderWidth = 5
         button.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMaxXMaxYCorner]
         button.clipsToBounds = true
         button.backgroundColor = UIColor.blue
@@ -151,6 +149,7 @@ class MainGameViewController: UIViewController {
     
     private let letterALabel: UILabel = {
         let label = UILabel()
+        label.layer.borderWidth = 5
         label.font = UIFont.systemFont(ofSize: 24)
         label.textColor = .white
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -166,6 +165,7 @@ class MainGameViewController: UIViewController {
     
     private let letterBLabel: UILabel = {
         let label = UILabel()
+        label.layer.borderWidth = 5
         label.font = UIFont.systemFont(ofSize: 24)
         label.textColor = .white
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -181,6 +181,7 @@ class MainGameViewController: UIViewController {
     
     private let letterCLabel: UILabel = {
         let label = UILabel()
+        label.layer.borderWidth = 5
         label.font = UIFont.systemFont(ofSize: 24)
         label.textColor = .white
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -196,6 +197,7 @@ class MainGameViewController: UIViewController {
     
     private let letterDLabel: UILabel = {
         let label = UILabel()
+        label.layer.borderWidth = 5
         label.font = UIFont.systemFont(ofSize: 24)
         label.textColor = .white
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -207,12 +209,6 @@ class MainGameViewController: UIViewController {
         label.clipsToBounds = true
         label.tag = 4
         return label
-    }()
-    
-    private let bottomView: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
     }()
     
     private lazy var giveMeMyMoneyButton: UIButton = {
@@ -256,16 +252,6 @@ class MainGameViewController: UIViewController {
         return button
     }()
     
-    private let topStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.spacing = 10
-        stackView.distribution = .fillProportionally
-        stackView.alignment = .top
-        stackView.axis = .horizontal
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        return stackView
-    }()
-    
     private let numberCostStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.spacing = 10
@@ -286,7 +272,7 @@ class MainGameViewController: UIViewController {
     
     private let answersBlockStackView: UIStackView = {
         let stackView = UIStackView()
-        stackView.spacing = 35
+        stackView.spacing = 10
         stackView.distribution = .fillEqually
         stackView.axis = .vertical
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -295,7 +281,7 @@ class MainGameViewController: UIViewController {
     
     private let lettersBlockStackView: UIStackView = {
         let stackView = UIStackView()
-        stackView.spacing = 35
+        stackView.spacing = 10
         stackView.distribution = .fillEqually
         stackView.axis = .vertical
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -323,7 +309,6 @@ class MainGameViewController: UIViewController {
     private let mainStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.spacing = 1
-        stackView.distribution = .fillProportionally
         stackView.axis = .vertical
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
@@ -354,10 +339,6 @@ class MainGameViewController: UIViewController {
             self.checkEndTime()
         })
     }
-    
-    //    override func viewWillDisappear(_ animated: Bool) {
-    //        music.player?.pause()
-    //    }
     
     override func viewWillAppear(_ animated: Bool) {
         music.playSound(nameOfMusic: "timing")
@@ -391,7 +372,6 @@ class MainGameViewController: UIViewController {
 
     func checkEndTime() {
         if !timerView.timerFlag {
-//            music.playSound(nameOfMusic: "wrongAnswer")
             music.player?.stop()
             let viewController = WiningViewController()
             viewController.modalPresentationStyle = .fullScreen
@@ -432,6 +412,28 @@ class MainGameViewController: UIViewController {
                 self?.present(viewController, animated: false)
             }
             
+        } else if LogicMeneger.shared.rightMakeMistake {
+            LogicMeneger.shared.rightMakeMistake = false
+            promptCallToFriendButton.setImage(UIImage(named: "redCrossCallToFriend"), for: .normal)
+            
+            // Здесь нужно изменить состояние usedPromtpts.callToFriend
+            
+            sender.backgroundColor = UIColor.orange
+            mainGameBrain.forEachArray(labelArray, sender.tag, .orange)
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
+                
+                let viewController = WiningViewController()
+                viewController.setIndex(self?.mainGameBrain.numberArray[index] ?? Int())
+                viewController.playerAnswer = PlayerAnswer(question: self?.mainGameBrain.questionNumberArray[index] ?? Int(), result: true)
+                viewController.setupCheckedAnswer(isChecked: true)
+                viewController.setupPrompts(with: self?.mainGameBrain.usedPrompts ?? UsedPrompts())
+                viewController.setupLoginName(loginName)
+                self?.music.player?.stop()
+                viewController.modalPresentationStyle = .fullScreen
+                
+                self?.present(viewController, animated: false)
+            }
         } else {
             sender.backgroundColor = UIColor.red
             mainGameBrain.forEachArray(labelArray, sender.tag, .red)
@@ -448,9 +450,9 @@ class MainGameViewController: UIViewController {
             }
         }
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
-            self?.updateUI()
-        }
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
+//            self?.updateUI()
+//        }
     }
     
     @objc
@@ -546,9 +548,6 @@ private extension MainGameViewController {
     func addSubviews() {
         view.addSubview(backgroundImageView)
         
-        topStackView.addArrangedSubview(timerView)
-        topStackView.addArrangedSubview(questionLabel)
-        
         numberCostStackView.addArrangedSubview(questionNumberLabel)
         numberCostStackView.addArrangedSubview(questionCostLabel)
         
@@ -572,13 +571,15 @@ private extension MainGameViewController {
         promptStackView.addArrangedSubview(promptHallHelpButton)
         promptStackView.addArrangedSubview(promptCallToFriendButton)
         
-        mainStackView.addArrangedSubview(topStackView)
+        mainStackView.addArrangedSubview(timerView)
+        
         mainStackView.addArrangedSubview(numberCostStackView)
-        mainStackView.addArrangedSubview(loginMoneyStackView)
-        mainStackView.addArrangedSubview(topView)
+        mainStackView.addArrangedSubview(questionLabel)
+        
         mainStackView.addArrangedSubview(centerStackView)
-        mainStackView.addArrangedSubview(bottomView)
+        
         mainStackView.addArrangedSubview(promptStackView)
+        mainStackView.addArrangedSubview(loginMoneyStackView)
         
         view.addSubview(mainStackView)
         view.addSubview(giveMeMyMoneyButton)
@@ -592,38 +593,35 @@ private extension MainGameViewController {
             backgroundImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             
             mainStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            mainStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            mainStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             mainStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             mainStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             
-            timerView.widthAnchor.constraint(equalToConstant: 87),
-            timerView.heightAnchor.constraint(equalToConstant: 87),
-            questionLabel.leadingAnchor.constraint(equalTo: timerView.trailingAnchor, constant: 10),
-            
-            topStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 5),
-            topStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -5),
-            topStackView.heightAnchor.constraint(equalToConstant: 120),
+            timerView.widthAnchor.constraint(equalToConstant: 100),
+            timerView.heightAnchor.constraint(equalToConstant: 100),
+            timerView.bottomAnchor.constraint(equalTo: numberCostStackView.topAnchor, constant: 0),
             
             numberCostStackView.heightAnchor.constraint(equalToConstant: 30),
+            numberCostStackView.bottomAnchor.constraint(equalTo: questionLabel.topAnchor, constant: -10),
+            
+            questionLabel.bottomAnchor.constraint(equalTo: centerStackView.topAnchor, constant: -10),
             
             lettersBlockStackView.widthAnchor.constraint(equalToConstant: 40),
             
             centerStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
             centerStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
             centerStackView.heightAnchor.constraint(equalToConstant: 310),
-            
-            topView.heightAnchor.constraint(equalToConstant: 90),
-            
-            bottomView.heightAnchor.constraint(equalToConstant: 80),
-            
-            giveMeMyMoneyButton.centerXAnchor.constraint(equalTo: bottomView.centerXAnchor),
-            giveMeMyMoneyButton.centerYAnchor.constraint(equalTo: bottomView.centerYAnchor),
+            centerStackView.bottomAnchor.constraint(equalTo: giveMeMyMoneyButton.topAnchor, constant: -10),
+            giveMeMyMoneyButton.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0),
             giveMeMyMoneyButton.heightAnchor.constraint(equalToConstant: 50),
             giveMeMyMoneyButton.widthAnchor.constraint(equalToConstant: 200),
+            giveMeMyMoneyButton.bottomAnchor.constraint(equalTo: promptStackView.topAnchor, constant: -10),
             
             promptStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             promptStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            promptStackView.heightAnchor.constraint(equalToConstant: 81)
+            promptStackView.heightAnchor.constraint(equalToConstant: 81),
+            promptStackView.bottomAnchor.constraint(equalTo: loginMoneyStackView.topAnchor, constant: -10),
+            loginMoneyStackView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0)
         ])
     }
 }

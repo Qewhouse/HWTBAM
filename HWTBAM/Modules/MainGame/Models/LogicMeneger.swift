@@ -5,26 +5,28 @@
 //  Created by Сергей Золотухин on 11.02.2023.
 //
 
-final class GetRandomInt {
-    var intValue: Int = 0
+final class LogicMeneger {
+    var rightMakeMistake = true
+    var intValue: Int = 4
     let qNumArray = [0, 1, 2, 3, 4]
     var randomInt: [Int] = []
     
-    init() {
+    private init() {
         getRandomNumberQ()
     }
+    
+    static let shared = LogicMeneger()
  
     func getRandomNumberQ() {
-        let intArray = qNumArray
-        let intSet = Set(intArray)
+        let intSet = Set(qNumArray)
         randomInt = Array(intSet)
     }
     
     func counter() {
         if intValue == 4 {
-            intValue += 1
-        } else {
             intValue = 0
+        } else {
+            intValue += 1
         }
     }
 }

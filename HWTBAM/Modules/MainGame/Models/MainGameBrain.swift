@@ -13,7 +13,6 @@ struct MainGameBrain {
     let qNumArray = [0, 1, 2, 3, 4]
     var hallHelp: HallHelpModel?
     var usedPrompts = UsedPrompts(fiftyFifty: true, hallHelp: true, callToFriend: true)
-    let getRandomInt = GetRandomInt()
     
 //        let quiz = [
 //        Question(text: "Универсальные шаблоны помогают реализовать это", answer: ["Архитектуру", "Коллекции", "Переменные свойства", "Гибкие функции"], correctAnswer: "4"),
@@ -41,11 +40,13 @@ struct MainGameBrain {
     Question(text: "Обработка ошибок, это процесс ...?", answer: ["Реагирования на ошибки", "Прогнозирования ошибок", "Хранения ошибок", "Генерации ошибок"], correctAnswer: "1"),
     Question(text: "Как называется класс, у которого наследуют?", answer: ["Наследник", "Класс", "Подкласс", "Суперкласс"], correctAnswer: "4"),
     Question(text: "Если String пустая, то startIndex и endIndex будут ...?", answer: ["Пустыми", "nil", "Неравными", "Равными"], correctAnswer: "4")],
+    
     [Question(text: "Как традиционно называют экземпляр класса в ООП?", answer: ["Экземпляр", "Структура", "Объект", "Таргет"], correctAnswer: "3"),
     Question(text: "Что из перечисленного является ссылочным типом?", answer: ["Свойства", "Структуры", "Классы", "Перечисления"], correctAnswer: "3"),
     Question(text: "Можно ли сравнивать две строки?", answer: ["Нет", "Да", "Только !=", "Только =="], correctAnswer: "2"),
     Question(text: "Как пишется сокращенная форма записи массива в Swift?", answer: ["Array<ElementType>", "Array(ElementType)[]", "[ElementType]", "[ElementType]()"], correctAnswer: "3"),
     Question(text: "Сколько основных типов коллекций обеспечивает Swift?", answer: ["3", "5", "2", "4"], correctAnswer: "1")],
+    
     [Question(text: "Сколько основных свойств имеет UIStackView?", answer: ["4", "3", "2", "1"], correctAnswer: "1"),
     Question(text: "Для каких типов доступны деинициализаторы?", answer: ["Типы перечислений", "Структурные типы", "Все перечисленные ", "Классовые типы"], correctAnswer: "4"),
     Question(text: "Чем разделяются протокола в композиции протоколов?", answer: [",", "&", "-", ":"], correctAnswer: "2"),
@@ -68,13 +69,11 @@ struct MainGameBrain {
         var valueInt = 0
         
         switch number {
-        case 0..<6:
+        case 0..<5:
             valueInt = 0
-        case 6..<11:
+        case 5..<10:
             valueInt = 1
-        case 11..<15:
-            valueInt = 2
-        case 15:
+        case 10..<15:
             valueInt = 2
         default:
             print("default value")
@@ -83,13 +82,12 @@ struct MainGameBrain {
     }
 
     func getQuestionText() -> String {
-        
+        LogicMeneger.shared.counter()
         let blockNumber = getBlockQuestionsNumber(questionNumber)
         
-        let arrayInt = getRandomInt.randomInt
+        let arrayInt = LogicMeneger.shared.randomInt
         
-        let intValue = getRandomInt.intValue
-        getRandomInt.counter()
+        let intValue = LogicMeneger.shared.intValue
         
         return quiz[blockNumber][arrayInt[intValue]].text
     }
@@ -108,10 +106,9 @@ struct MainGameBrain {
     
     mutating func checkAnswer(userAnswer: String) -> Bool {
         let blockNumber = getBlockQuestionsNumber(questionNumber)
-        let arrayInt = getRandomInt.randomInt
+        let arrayInt = LogicMeneger.shared.randomInt
         
-        let intValue = getRandomInt.intValue
-        getRandomInt.counter()
+        let intValue = LogicMeneger.shared.intValue
         
         if userAnswer == quiz[blockNumber][arrayInt[intValue]].correctAnswer {
             return true
@@ -122,10 +119,9 @@ struct MainGameBrain {
     
     func getButtonTitle(with buttonNumber: Int) -> String {
         let blockNumber = getBlockQuestionsNumber(questionNumber)
-        let arrayInt = getRandomInt.randomInt
+        let arrayInt = LogicMeneger.shared.randomInt
         
-        let intValue = getRandomInt.intValue
-        getRandomInt.counter()
+        let intValue = LogicMeneger.shared.intValue
         
         let stringValue = quiz[blockNumber][arrayInt[intValue]].answer[buttonNumber]
         return stringValue
@@ -291,10 +287,9 @@ struct MainGameBrain {
     
     func getCorrectInt() -> Int {
         let blockNumber = getBlockQuestionsNumber(questionNumber)
-        let arrayInt = getRandomInt.randomInt
+        let arrayInt = LogicMeneger.shared.randomInt
         
-        let intValue = getRandomInt.intValue
-        getRandomInt.counter()
+        let intValue = LogicMeneger.shared.intValue
         
         guard let correctInt = Int(quiz[blockNumber][arrayInt[intValue]].correctAnswer) else { fatalError() }
         return correctInt
