@@ -358,12 +358,12 @@ class MainGameViewController: UIViewController {
             promptFiftyFiftyButton.isEnabled = model.fiftyFifty
             promptFiftyFiftyButton.setImage(UIImage(named: "redCrossFiftyFifty"), for: .normal)
         }
-
+        
         if model.hallHelp == false {
             promptHallHelpButton.isEnabled = model.hallHelp
             promptHallHelpButton.setImage(UIImage(named: "redCrossHallHelp"), for: .normal)
         }
-
+        
         if model.callToFriend == false {
             promptCallToFriendButton.isEnabled = model.callToFriend
             promptCallToFriendButton.setImage(UIImage(named: "redCrossCallToFriend"), for: .normal)
@@ -372,12 +372,18 @@ class MainGameViewController: UIViewController {
 
     func checkEndTime() {
         if !timerView.timerFlag {
+            let index = mainGameBrain.questionNumber
             music.player?.stop()
-            let viewController = WiningViewController()
-            viewController.modalPresentationStyle = .fullScreen
-            viewController.setupCheckedAnswer(isChecked: false)
-            viewController.playerAnswer = PlayerAnswer(question: mainGameBrain.safeMoney(mainGameBrain.questionNumber).safeNumber, result: true)
-            present(viewController, animated: false)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
+                self?.music.player?.stop()
+                let viewController = WiningViewController()
+                viewController.modalPresentationStyle = .fullScreen
+                viewController.playerAnswer = PlayerAnswer(question: self?.mainGameBrain.safeMoney(index).safeNumber ?? Int(), result: true)
+                viewController.setupSafeMoney(with: self?.mainGameBrain.safeMoney(index) ?? LoseViewModel(safeNumber: Int(), safeMoney: String()))
+                viewController.setupCheckedAnswer(isChecked: false)
+                
+                self?.present(viewController, animated: false)
+            }
             checkTimer.invalidate()
         }
     }
@@ -447,9 +453,9 @@ class MainGameViewController: UIViewController {
             }
         }
         
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
-//            self?.updateUI()
-//        }
+        //        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
+        //            self?.updateUI()
+        //        }
     }
     
     @objc
@@ -486,16 +492,13 @@ class MainGameViewController: UIViewController {
     
     @objc
     private func didTapCallToFriendButton(_ sender: UIButton) {
-        let randomValue = mainGameBrain.callToFriend()
+        mainGameBrain.callToFriend()
         music.player?.pause()
         music.playSound(nameOfMusic: "Hint Chosen")
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
             self.music.playSound(nameOfMusic: "timingAfter")
             self.music.player?.numberOfLoops = 5
         }
-        
-        mainGameBrain.forEachArray(buttonsArray, randomValue, .orange)
-        mainGameBrain.forEachArray(labelArray, randomValue, .orange)
         mainGameBrain.setCallToFriend(false)
         mainGameBrain.disableButton(sender, "redCrossCallToFriend")
     }
@@ -516,23 +519,17 @@ private extension MainGameViewController {
     func updateUI() {
         questionCostLabel.text = "\(mainGameBrain.changeCostText()) руб."
         questionNumberLabel.text = mainGameBrain.changeNumberText()
-        
         questionLabel.text = mainGameBrain.getQuestionText()
-        
         letterALabel.backgroundColor = UIColor.blue
         letterBLabel.backgroundColor = UIColor.blue
         letterCLabel.backgroundColor = UIColor.blue
         letterDLabel.backgroundColor = UIColor.blue
-        
         answerAButton.backgroundColor = UIColor.blue
         answerAButton.setTitle(mainGameBrain.getButtonTitle(with: 0), for: .normal)
-        
         answerBButton.backgroundColor = UIColor.blue
         answerBButton.setTitle(mainGameBrain.getButtonTitle(with: 1), for: .normal)
-        
         answerCButton.backgroundColor = UIColor.blue
         answerCButton.setTitle(mainGameBrain.getButtonTitle(with: 2), for: .normal)
-        
         answerDButton.backgroundColor = UIColor.blue
         answerDButton.setTitle(mainGameBrain.getButtonTitle(with: 3), for: .normal)
     }
@@ -547,34 +544,25 @@ private extension MainGameViewController {
         
         numberCostStackView.addArrangedSubview(questionNumberLabel)
         numberCostStackView.addArrangedSubview(questionCostLabel)
-        
         loginMoneyStackView.addArrangedSubview(loginLabel)
         loginMoneyStackView.addArrangedSubview(moneyLabel)
-        
         answersBlockStackView.addArrangedSubview(answerAButton)
         answersBlockStackView.addArrangedSubview(answerBButton)
         answersBlockStackView.addArrangedSubview(answerCButton)
         answersBlockStackView.addArrangedSubview(answerDButton)
-        
         lettersBlockStackView.addArrangedSubview(letterALabel)
         lettersBlockStackView.addArrangedSubview(letterBLabel)
         lettersBlockStackView.addArrangedSubview(letterCLabel)
         lettersBlockStackView.addArrangedSubview(letterDLabel)
-        
         centerStackView.addArrangedSubview(lettersBlockStackView)
         centerStackView.addArrangedSubview(answersBlockStackView)
-        
         promptStackView.addArrangedSubview(promptFiftyFiftyButton)
         promptStackView.addArrangedSubview(promptHallHelpButton)
         promptStackView.addArrangedSubview(promptCallToFriendButton)
-        
         mainStackView.addArrangedSubview(timerView)
-        
         mainStackView.addArrangedSubview(numberCostStackView)
         mainStackView.addArrangedSubview(questionLabel)
-        
         mainStackView.addArrangedSubview(centerStackView)
-        
         mainStackView.addArrangedSubview(promptStackView)
         mainStackView.addArrangedSubview(loginMoneyStackView)
         
