@@ -82,12 +82,12 @@ struct MainGameBrain {
     }
 
     func getQuestionText() -> String {
-        GetRandomInt.shared.counter()
+        LogicMeneger.shared.counter()
         let blockNumber = getBlockQuestionsNumber(questionNumber)
         
-        let arrayInt = GetRandomInt.shared.randomInt
+        let arrayInt = LogicMeneger.shared.randomInt
         
-        let intValue = GetRandomInt.shared.intValue
+        let intValue = LogicMeneger.shared.intValue
         
         return quiz[blockNumber][arrayInt[intValue]].text
     }
@@ -106,9 +106,9 @@ struct MainGameBrain {
     
     mutating func checkAnswer(userAnswer: String) -> Bool {
         let blockNumber = getBlockQuestionsNumber(questionNumber)
-        let arrayInt = GetRandomInt.shared.randomInt
+        let arrayInt = LogicMeneger.shared.randomInt
         
-        let intValue = GetRandomInt.shared.intValue
+        let intValue = LogicMeneger.shared.intValue
         
         if userAnswer == quiz[blockNumber][arrayInt[intValue]].correctAnswer {
             return true
@@ -119,9 +119,9 @@ struct MainGameBrain {
     
     func getButtonTitle(with buttonNumber: Int) -> String {
         let blockNumber = getBlockQuestionsNumber(questionNumber)
-        let arrayInt = GetRandomInt.shared.randomInt
+        let arrayInt = LogicMeneger.shared.randomInt
         
-        let intValue = GetRandomInt.shared.intValue
+        let intValue = LogicMeneger.shared.intValue
         
         let stringValue = quiz[blockNumber][arrayInt[intValue]].answer[buttonNumber]
         return stringValue
@@ -287,9 +287,9 @@ struct MainGameBrain {
     
     func getCorrectInt() -> Int {
         let blockNumber = getBlockQuestionsNumber(questionNumber)
-        let arrayInt = GetRandomInt.shared.randomInt
+        let arrayInt = LogicMeneger.shared.randomInt
         
-        let intValue = GetRandomInt.shared.intValue
+        let intValue = LogicMeneger.shared.intValue
         
         guard let correctInt = Int(quiz[blockNumber][arrayInt[intValue]].correctAnswer) else { fatalError() }
         return correctInt

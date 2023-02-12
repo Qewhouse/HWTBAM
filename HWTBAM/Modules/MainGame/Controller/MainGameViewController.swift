@@ -432,6 +432,28 @@ class MainGameViewController: UIViewController {
                 self?.present(viewController, animated: false)
             }
             
+        } else if LogicMeneger.shared.rightMakeMistake {
+            LogicMeneger.shared.rightMakeMistake = false
+            promptCallToFriendButton.setImage(UIImage(named: "redCrossCallToFriend"), for: .normal)
+            
+            // Здесь нужно изменить состояние usedPromtpts.callToFriend
+            
+            sender.backgroundColor = UIColor.orange
+            mainGameBrain.forEachArray(labelArray, sender.tag, .orange)
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
+                
+                let viewController = WiningViewController()
+                viewController.setIndex(self?.mainGameBrain.numberArray[index] ?? Int())
+                viewController.playerAnswer = PlayerAnswer(question: self?.mainGameBrain.questionNumberArray[index] ?? Int(), result: true)
+                viewController.setupCheckedAnswer(isChecked: true)
+                viewController.setupPrompts(with: self?.mainGameBrain.usedPrompts ?? UsedPrompts())
+                viewController.setupLoginName(loginName)
+                self?.music.player?.stop()
+                viewController.modalPresentationStyle = .fullScreen
+                
+                self?.present(viewController, animated: false)
+            }
         } else {
             sender.backgroundColor = UIColor.red
             mainGameBrain.forEachArray(labelArray, sender.tag, .red)

@@ -5,7 +5,8 @@
 //  Created by Сергей Золотухин on 11.02.2023.
 //
 
-final class GetRandomInt {
+final class LogicMeneger {
+    var rightMakeMistake = true
     var intValue: Int = 4
     let qNumArray = [0, 1, 2, 3, 4]
     var randomInt: [Int] = []
@@ -14,7 +15,7 @@ final class GetRandomInt {
         getRandomNumberQ()
     }
     
-    static let shared = GetRandomInt()
+    static let shared = LogicMeneger()
  
     func getRandomNumberQ() {
         let intSet = Set(qNumArray)
