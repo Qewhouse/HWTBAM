@@ -80,7 +80,7 @@ final class WiningViewController: UIViewController {
     }
     
     @objc private func viewTaps() {
-        if checkedAnswer == true {
+        if checkedAnswer == true && index != 14 {
             let upperIndex = index + 1
             
             let viewController = MainGameViewController()
@@ -98,9 +98,17 @@ final class WiningViewController: UIViewController {
         } else if checkedAnswer == false {
             guard let viewModel = loseViewModel else { fatalError() }
             let viewController = LoseScreenViewController()
-            viewController.setupLoseViewController(with: viewModel)
+            viewController.setupLoseViewController(with: viewModel, with: loginName)
             viewController.modalPresentationStyle = .fullScreen
             music.player?.stop()
+            present(viewController, animated: false)
+        } else if checkedAnswer == true && index == 14 {
+            music.player?.stop()
+            let prizeMoney = "1 000 000"
+            let loginName = loginName
+            let viewController = ResultViewController()
+            viewController.setupResultViewController(ResultModel(name: loginName, prizeMoney: prizeMoney))
+            viewController.modalPresentationStyle = .fullScreen
             present(viewController, animated: false)
         }
     }
@@ -121,7 +129,7 @@ extension WiningViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        40
+        33
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

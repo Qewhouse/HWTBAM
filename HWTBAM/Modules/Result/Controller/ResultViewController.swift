@@ -46,6 +46,20 @@ class ResultViewController: UIViewController {
         return label
     }()
     
+    private let highScoreLabel: UILabel = {
+        let label = UILabel()
+        label.text = """
+                    Ваш лучший счет:
+                    0
+                    """
+        label.textColor = .white
+        label.numberOfLines = 0
+        label.textAlignment = .center
+        label.font = .boldSystemFont(ofSize: 36)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
     private lazy var playAgainButton: UIButton = {
         let button = UIButton(type: .system)
         button.addTarget(self, action: #selector(playAgainButtonTapped), for: .touchUpInside)
@@ -71,6 +85,7 @@ class ResultViewController: UIViewController {
     var winBrain = WinBrain()
     var mainGameBrain = MainGameBrain()
     var viewModel: ResultModel?
+    let userService = UserService.shared
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -80,14 +95,45 @@ class ResultViewController: UIViewController {
     }
 
     func setupResultViewController(_ model: ResultModel) {
-            mainLabel.text = "\(model.name) выиграл"
-            subLabel.text = model.prizeMoney
+        viewModel = model
+
+        mainLabel.text = "\(model.name) выиграл"
+        subLabel.text = model.prizeMoney
+        highScoreLabel.text = """
+                    Ваш лучший счет:
+                    \(String(setScore()))
+                    """
     }
     
     @objc func playAgainButtonTapped() {
+        guard let loginName = viewModel?.name else { fatalError() }
         let viewController = MainGameViewController()
         viewController.modalPresentationStyle = .fullScreen
+        viewController.setupLoginLabel(loginName)
         present(viewController, animated: false)
+    }
+    
+    func setScore() -> Int {
+        guard let key = viewModel?.name else { fatalError() }
+
+        if key != "Гость" {
+            guard let newScoreString = viewModel?.prizeMoney.replacingOccurrences(of: " ", with: "") else { fatalError() }
+            
+            guard let newScoreInt = Int(newScoreString) else { fatalError() }
+            let user = userService.getUser(key: key)
+            let userName = user.loginName
+            let userPassword = user.password
+            var userBestScore = user.moneySum
+            if newScoreInt > userBestScore {
+                userBestScore = newScoreInt
+            }
+            userService.saveUser(user: UserStruct(loginName: userName, password: userPassword, moneySum: userBestScore))
+            let newUser = userService.getUser(key: userName)
+            return newUser.moneySum
+        } else {
+            highScoreLabel.isHidden = true
+            return 0
+        }
     }
     
     private func setLayot() {
@@ -98,6 +144,7 @@ class ResultViewController: UIViewController {
         
         labelStackView.addArrangedSubview(mainLabel)
         labelStackView.addArrangedSubview(subLabel)
+        labelStackView.addArrangedSubview(highScoreLabel)
     }
     
     private func setConstraints() {

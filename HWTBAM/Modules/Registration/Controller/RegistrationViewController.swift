@@ -87,7 +87,7 @@ class RegistrationViewController: UIViewController {
         return stackView
     }()
     
-    let storage: KeyValueStorage = SharedStorage()
+//    let storage: KeyValueStorage = SharedStorage()
     let userService = UserService.shared
     
     override func viewDidLoad() {
@@ -114,7 +114,7 @@ private extension RegistrationViewController {
     private func setStorage() {
         let loginValue = nameRegistrationTextField.text ?? ""
         let passwordValue = passwordRegistrationTextField.text ?? ""
-        let newUser = UserStruct(loginName: loginValue, password: passwordValue)
+        let newUser = UserStruct(loginName: loginValue, password: passwordValue, moneySum: 0)
         userService.saveUser(user: newUser)
     }
   

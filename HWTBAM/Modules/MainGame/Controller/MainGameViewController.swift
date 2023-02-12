@@ -26,7 +26,7 @@ class MainGameViewController: UIViewController {
     
     private let questionLabel: UILabel = {
         let label = UILabel()
-        label.font = .boldSystemFont(ofSize: 30)
+        label.font = .boldSystemFont(ofSize: 22)
         label.textColor = .white
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Here will be your question"
@@ -59,7 +59,7 @@ class MainGameViewController: UIViewController {
     
     private let loginLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 24)
+        label.font = UIFont.systemFont(ofSize: 24)
         label.textColor = .green
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Гость"
@@ -70,7 +70,7 @@ class MainGameViewController: UIViewController {
     
     private let moneyLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 24)
+        label.font = UIFont.systemFont(ofSize: 24)
         label.textColor = .green
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "0 руб."
@@ -350,7 +350,8 @@ class MainGameViewController: UIViewController {
     }
     
     func setupMoneyLabel(_ bablo: String) {
-        moneyLabel.text = "\(bablo) руб."
+//        moneyLabel.text = "\(bablo) руб."
+        moneyLabel.text = bablo
     }
     
     func checkUsedPrompts(with model: UsedPrompts) {
@@ -427,11 +428,11 @@ class MainGameViewController: UIViewController {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
                 
                 let viewController = WiningViewController()
+                viewController.setupLoginName(loginName)
                 viewController.setIndex(self?.mainGameBrain.numberArray[index] ?? Int())
                 viewController.playerAnswer = PlayerAnswer(question: self?.mainGameBrain.questionNumberArray[index] ?? Int(), result: true)
                 viewController.setupCheckedAnswer(isChecked: true)
                 viewController.setupPrompts(with: self?.mainGameBrain.usedPrompts ?? UsedPrompts())
-                viewController.setupLoginName(loginName)
                 self?.music.player?.stop()
                 viewController.modalPresentationStyle = .fullScreen
                 
@@ -447,15 +448,12 @@ class MainGameViewController: UIViewController {
                 viewController.modalPresentationStyle = .fullScreen
                 viewController.playerAnswer = PlayerAnswer(question: self?.mainGameBrain.safeMoney(index).safeNumber ?? Int(), result: true)
                 viewController.setupSafeMoney(with: self?.mainGameBrain.safeMoney(index) ?? LoseViewModel(safeNumber: Int(), safeMoney: String()))
+                viewController.setupLoginName(loginName)
                 viewController.setupCheckedAnswer(isChecked: false)
                 
                 self?.present(viewController, animated: false)
             }
         }
-        
-        //        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
-        //            self?.updateUI()
-        //        }
     }
     
     @objc
@@ -593,9 +591,9 @@ private extension MainGameViewController {
             
             lettersBlockStackView.widthAnchor.constraint(equalToConstant: 40),
             
-            centerStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
-            centerStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
-            centerStackView.heightAnchor.constraint(equalToConstant: 310),
+            centerStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
+            centerStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
+            centerStackView.heightAnchor.constraint(equalToConstant: 210),
             centerStackView.bottomAnchor.constraint(equalTo: giveMeMyMoneyButton.topAnchor, constant: -10),
             giveMeMyMoneyButton.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0),
             giveMeMyMoneyButton.heightAnchor.constraint(equalToConstant: 50),
@@ -606,7 +604,7 @@ private extension MainGameViewController {
             promptStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             promptStackView.heightAnchor.constraint(equalToConstant: 81),
             promptStackView.bottomAnchor.constraint(equalTo: loginMoneyStackView.topAnchor, constant: -10),
-            loginMoneyStackView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0)
+            loginMoneyStackView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -15)
         ])
     }
 }
