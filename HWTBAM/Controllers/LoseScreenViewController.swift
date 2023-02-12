@@ -30,7 +30,7 @@ class LoseScreenViewController: UIViewController {
         label.text = "Вы проиграли!"
         label.textColor = .white
         label.textAlignment = .center
-        label.font = .boldSystemFont(ofSize: 30)
+        label.font = .boldSystemFont(ofSize: 24)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -41,14 +41,30 @@ class LoseScreenViewController: UIViewController {
         label.textColor = .white
         label.numberOfLines = 0
         label.textAlignment = .center
-        label.font = .boldSystemFont(ofSize: 36)
+        label.font = .boldSystemFont(ofSize: 24)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-    private let playAgainButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("Играть снова", for: .normal)
+    private let highScoreLabel: UILabel = {
+        let label = UILabel()
+        label.text = """
+                    Ваш лучший счет:
+                    0
+                    """
+        label.textColor = .white
+        label.numberOfLines = 0
+        label.textAlignment = .center
+        label.font = .boldSystemFont(ofSize: 24)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    private lazy var playAgainButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.addTarget(self, action: #selector(playAgainButtonTapped), for: .touchUpInside)
+        button.setTitle("Play Again", for: .normal)
+        button.tintColor = .white
         button.layer.cornerRadius = 10
         button.backgroundColor = .gray
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -66,30 +82,57 @@ class LoseScreenViewController: UIViewController {
         return stack
     }()
     
+    let userService = UserService.shared
     var winBrain = WinBrain()
     var mainGameBrain = MainGameBrain()
+    var loginNick = ""
+    var viewModel: LoseViewModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setLayot()
         setConstraints()
-        
-        buttonTapped()
     }
-    
-    func buttonTapped() {
-        playAgainButton.addTarget(self, action: #selector(playAgainButtonTapped), for: .touchUpInside)
-    }
-    
-    func setupLoseViewController(with model: LoseViewModel) {
+
+    func setupLoseViewController(with model: LoseViewModel, with name: String) {
+        loginNick = name
+        viewModel = model
         subLabel.text = "Ваш выигрыш составил: \(model.safeMoney) руб."
+        highScoreLabel.text = """
+                    Ваш лучший счет:
+                    \(String(setScore()))
+                    """
     }
     
     @objc func playAgainButtonTapped() {
+        let loginName = loginNick
         let viewController = MainGameViewController()
         viewController.modalPresentationStyle = .fullScreen
+        viewController.setupLoginLabel(loginName)
         present(viewController, animated: false)
+    }
+    
+    func setScore() -> Int {
+        let key = loginNick
+
+        if key != "Гость" {
+            guard let newScoreString = viewModel?.safeMoney.replacingOccurrences(of: " ", with: "") else { fatalError() }
+            guard let newScoreInt = Int(newScoreString) else { fatalError() }
+            let user = userService.getUser(key: key)
+            let userName = user.loginName
+            let userPassword = user.password
+            var userBestScore = user.moneySum
+            if newScoreInt > userBestScore {
+                userBestScore = newScoreInt
+            }
+            userService.saveUser(user: UserStruct(loginName: userName, password: userPassword, moneySum: userBestScore))
+            let newUser = userService.getUser(key: userName)
+            return newUser.moneySum
+        } else {
+            highScoreLabel.isHidden = true
+            return 0
+        }
     }
     
     private func setLayot() {
@@ -100,6 +143,7 @@ class LoseScreenViewController: UIViewController {
         
         labelStackView.addArrangedSubview(mainLabel)
         labelStackView.addArrangedSubview(subLabel)
+        labelStackView.addArrangedSubview(highScoreLabel)
     }
     
     private func setConstraints() {
