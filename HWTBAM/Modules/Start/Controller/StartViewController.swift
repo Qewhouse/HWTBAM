@@ -64,8 +64,9 @@ to be a Millionare ?
     
     private let rulesButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(named: "rules"), for: .normal)
-        button.tintColor = UIColor.white
+        button.setImage(UIImage(systemName: "questionmark"), for: .normal)
+        button.contentMode = .scaleToFill
+        button.tintColor = .white
         button.layer.cornerRadius = 15
         button.layer.borderColor = UIColor.systemGray.cgColor
         button.layer.borderWidth = 2
@@ -167,6 +168,7 @@ extension StartViewController {
             rulesButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             rulesButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -5),
             rulesButton.widthAnchor.constraint(equalToConstant: 40),
+            rulesButton.heightAnchor.constraint(equalToConstant: 40),
             
             labelStackView.topAnchor.constraint(equalTo: logoImage.bottomAnchor, constant: 20),
             labelStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
